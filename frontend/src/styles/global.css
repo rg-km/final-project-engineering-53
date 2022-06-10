@@ -1,9 +1,15 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,500&display=swap");
+
+* {
   margin: 0;
   padding: 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Josefin Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #f8f7fc !important;
 }
 
 code {
