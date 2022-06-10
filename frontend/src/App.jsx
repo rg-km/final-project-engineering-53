@@ -1,13 +1,13 @@
-import { Button, Text } from "@chakra-ui/react";
-import React from "react";
+import * as React from "react";
 
-function App() {
+import Navbar from "./components/navbar/Navbar";
+import Hero from "./components/sections/Hero";
+
+export default function App() {
   return (
     <>
-      <Text>sudah menggunakan chakra ui</Text>
-      <Button colorScheme="blue">Button</Button>
+      <Navbar />
+      <Hero />
     </>
   );
 }
-
-export default App;
