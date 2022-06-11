@@ -1,21 +1,22 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
+	//sql
+	"database/sql"
 )
 
-var DB *gorm.DB
+var DB *sql.DB
 
-func ConnectDataBase() {
-	database, err := gorm.Open("sqlite3", "sqlite.db")
-
+func ConnectDatabase() {
+	var err error
+	DB, err = sql.Open("sqlite3", ".database.db")
 	if err != nil {
-		panic("Failed to connect to database!")
+		panic(err)
 	}
-	
-	database.AutoMigrate(&User{})
-
-	DB = database
-		
+	if err = DB.Ping(); err != nil {
+		panic(err)
+	}
+	//migrate database
+	DB.Exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT, password TEXT, role TEXT, username TEXT, phone TEXT)")
 }
