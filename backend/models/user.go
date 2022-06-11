@@ -46,3 +46,15 @@ func GetUserID(id uint) (User, error) {
 	}
 	return user, nil
 }
+func UpdateUser(user *User) {
+	user.HashPassword()
+	DB.Exec("UPDATE users SET email = ?, password = ?, role = ?, username = ?, phone = ? WHERE id = ?", user.Email, user.Password, user.Role, user.Username, user.Phone, user.ID)
+}
+func GetUserEmail(email string,phone string) (User, error) {
+	var user User
+	err := DB.QueryRow("SELECT * FROM users WHERE email = ? OR phone = ?", email,phone).Scan(&user.ID, &user.Email, &user.Password, &user.Role, &user.Username, &user.Phone)
+	if err != nil {
+		return user, err
+	}
+	return user, nil
+}

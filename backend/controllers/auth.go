@@ -5,6 +5,7 @@ import (
 	"futuremap/models"
 	"futuremap/utils/token"
 	"net/http"
+	"math/rand"
 
 )
 type RegisterInput struct {
@@ -19,6 +20,10 @@ type RegisterAdminInput struct {
 	Username  string `json:"username"`
 	Phone    string `json:"phone"`
 }
+type ResetPasswordInput struct {
+	Email     string `json:"email"`
+	Phone	string `json:"phone"`
+}
 type LoginInput struct {
 	Email     string `json:"email"`
 	Password  string `json:"password"`
@@ -29,7 +34,6 @@ func Register(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
-	//exec data in input
 	user := models.User{
 		Email:     input.Email,
 		Password:  input.Password,
@@ -75,21 +79,40 @@ func Login(c *gin.Context) {
 	c.JSON(200, gin.H{"token": token})
 }
 func CurrentUser(c *gin.Context){
-	//extract token from header and check if valid
 	user_id, err := token.ExtractTokenID(c)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	//get user by id
 	u,err := models.GetUserID(user_id)
-	//if error return error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	//remove password from user
 	u.Password = ""
-	//return user data if no error
 	c.JSON(http.StatusOK, gin.H{"message":"success","data":u})
+}
+func ResetPassword(c *gin.Context) {
+	var input ResetPasswordInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	user := models.User{
+		Email:     input.Email,
+		Phone:	input.Phone,
+	}
+	u,err := models.GetUserEmail(user.Email,user.Phone)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+	b := make([]rune, 8)
+	for i := range b {
+		b[i] = letters[rand.Intn(len(letters))]
+	}
+	u.Password = string(b)
+	models.UpdateUser(&u)
+	c.JSON(200, gin.H{"message": "success","password":string(b)})
 }
