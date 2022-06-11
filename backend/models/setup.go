@@ -2,7 +2,6 @@ package models
 
 import (
 	_ "github.com/mattn/go-sqlite3"
-	//sql
 	"database/sql"
 )
 
@@ -17,6 +16,5 @@ func ConnectDatabase() {
 	if err = DB.Ping(); err != nil {
 		panic(err)
 	}
-	//migrate database
 	DB.Exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT, password TEXT, role TEXT, username TEXT, phone TEXT)")
 }
