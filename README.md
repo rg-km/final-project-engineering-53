@@ -17,7 +17,7 @@ localhost:8080/admin/register
 To login admin:
 
 ```sh
-localhost:8080/admin/login
+localhost:8080/login
 ```
 Json data admin register:
 ```sh
