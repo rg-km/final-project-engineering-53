@@ -1,0 +1,46 @@
+{
+  "material": [
+    {
+      "id": 1,
+      "title": "Teknik Informatika",
+      "title_eng": "Informatics Engineering",
+      "description": "IE - Sebuah jurusan yang mempelajari tentang sistem atau teknologi olah data termasuk implementasi pada...",
+      "thumbnail": "https://picsum.photos/id/48/600/300"
+    },
+    {
+      "id": 2,
+      "title": "Sistem Informasi",
+      "title_eng": "Information System",
+      "description": "IS - Sebuah jurusan yang mempelajari tentang sistem atau teknologi olah data termasuk implementasi pada...",
+      "thumbnail": "https://picsum.photos/id/62/600/300"
+    },
+    {
+      "id": 3,
+      "title": "Sains Data",
+      "title_eng": "Data Science",
+      "description": "DS - Sebuah jurusan yang mempelajari tentang sistem atau teknologi olah data termasuk implementasi pada...",
+      "thumbnail": "https://picsum.photos/id/106/600/300"
+    },
+    {
+      "id": 4,
+      "title": "Sistem Komputer",
+      "title_eng": "Computer System",
+      "description": "CS - Sistem Komputer atau Teknik Komputer adalah disiplin ilmu yang mengkombinasikan teknik elektro dan ilmu komputer...",
+      "thumbnail": "https://picsum.photos/id/7/600/300"
+    },
+    {
+      "id": 5,
+      "title": "Teknologi Informasi",
+      "title_eng": "Information Technology",
+      "description": "IT - Teknologi informasi adalah disiplin ilmu yang mempelajari solusi - solusi teknologi komputer bagi organisasi di berbagai bidang...",
+      "thumbnail": "https://picsum.photos/id/98/600/300"
+    },
+    {
+      "id": 6,
+      "title": "Kecerdasan Buatan",
+      "title_eng": "Artificial Intelligence",
+      "description": "AI - Jurusan Teknik Robotika dan Kecerdasan Buatan merupakan satu - satunya jurusan yang berhubungan dengan kecerdasan buatan di Indonesia....",
+      "thumbnail": "https://picsum.photos/id/25/600/300"
+    }
+  ]
+}
