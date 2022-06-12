@@ -1,22 +1,9 @@
-import { useEffect, useState } from "react";
-
 import { Box, Container, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/react";
 import SubjectCard from "../cards/SubjectCard";
+import useFetch from "../../hooks/useFetch";
 
 export default function Learning() {
-  const url = "http://localhost:8000/material";
-
-  const [material, setMaterial] = useState(null);
-
-  useEffect(() => {
-    // nanti di improve lagi pakai axios
-    fetch(url).then((res) => {
-      return res.json().then((data) => {
-        // console.log(data);
-        setMaterial(data);
-      });
-    });
-  }, []);
+  const { data: materials, loading } = useFetch("http://localhost:8000/materials");
 
   return (
     <>
@@ -33,20 +20,26 @@ export default function Learning() {
               </Text>
             </Box>
 
-            <Flex width="50%" overflowX="scroll">
-              <HStack justify="space-between" py={16} spacing={8}>
-                {material &&
-                  material.map((data) => (
-                    <SubjectCard
-                      key={data.id}
-                      id={data.id}
-                      thumbnail={data.thumbnail}
-                      title={data.title}
-                      title_eng={data.title_eng}
-                      description={data.description}
-                    />
-                  ))}
-              </HStack>
+            <Flex width="55%" overflowX="scroll">
+              {!loading ? (
+                <HStack justify="space-between" py={16} spacing={8}>
+                  {materials &&
+                    materials.map((data) => (
+                      <SubjectCard
+                        key={data.id}
+                        id={data.id}
+                        thumbnail={data.thumbnail}
+                        title={data.title}
+                        title_eng={data.title_eng}
+                        description={data.description}
+                      />
+                    ))}
+                </HStack>
+              ) : (
+                <Heading as="h2" fontSize="3xl">
+                  Loading...
+                </Heading>
+              )}
             </Flex>
           </Stack>
         </Container>

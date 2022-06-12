@@ -21,7 +21,7 @@ export default function SubjectCard({ id, thumbnail, title, title_eng, descripti
           </Box>
 
           <Box pt={4}>
-            <Button id={id} colorScheme="blue" variant="ghost">
+            <Button id={id} size="lg" colorScheme="blue" variant="ghost">
               Learn More
             </Button>
           </Box>
