@@ -20,6 +20,12 @@ type RegisterAdminInput struct {
 	Username  string `json:"username"`
 	Phone    string `json:"phone"`
 }
+type UpdateProfileInput struct {
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	Username  string `json:"username"`
+	Phone    string `json:"phone"`
+}
 type ResetPasswordInput struct {
 	Email     string `json:"email"`
 	Phone	string `json:"phone"`
@@ -115,4 +121,27 @@ func ResetPassword(c *gin.Context) {
 	u.Password = string(b)
 	models.UpdateUser(&u)
 	c.JSON(200, gin.H{"message": "success","password":string(b)})
+}
+func UpdateProfile(c *gin.Context) {
+	var input UpdateProfileInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	user_id, err := token.ExtractTokenID(c)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	u,err := models.GetUserID(user_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	u.Email = input.Email
+	u.Username = input.Username
+	u.Phone = input.Phone
+	u.Password = input.Password
+	models.UpdateUser(&u)
+	c.JSON(200, gin.H{"message": "success"})
 }

@@ -17,9 +17,11 @@ func SetupRoutes() *gin.Engine {
 	client := r.Group("/client")
 	client.Use(middlewares.JwtAuthMiddleware())
 	client.GET("/user", controllers.CurrentUser)
+	client.PUT("/update/profile", controllers.UpdateProfile)
 	//=============================Middlewares for Admin======================================================
 	admin := r.Group("/admin")
 	admin.Use(middlewares.JwtAuthMiddlewareAdmin())
 	admin.GET("/user",controllers.CurrentUser)
+	admin.PUT("/update/profile", controllers.UpdateProfile)
 	return r
 }
