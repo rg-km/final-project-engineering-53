@@ -122,6 +122,7 @@ func ResetPassword(c *gin.Context) {
 	models.UpdateUser(&u)
 	c.JSON(200, gin.H{"message": "success","password":string(b)})
 }
+
 func UpdateProfile(c *gin.Context) {
 	var input UpdateProfileInput
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -145,3 +146,4 @@ func UpdateProfile(c *gin.Context) {
 	models.UpdateUser(&u)
 	c.JSON(200, gin.H{"message": "success"})
 }
+
