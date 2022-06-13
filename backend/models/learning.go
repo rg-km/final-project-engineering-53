@@ -12,30 +12,42 @@ type Learning struct {
 	Image	string `json:"image"`
 }
 func SaveLearning(learning *Learning) (uint, error) {
+	// Insert the learning into the database and get the id
 	err := DB.QueryRow("INSERT INTO learning (header, sub_header, content, image) VALUES (?, ?, ?, ?) RETURNING id", learning.Header, learning.SubHeader, learning.Content, learning.Image).Scan(&learning.ID)
 	return learning.ID, err
 }
 func GetLearning() ([]Learning, error) {
+	// Get all the learning from the database
 	var learning []Learning
+	//find all the learning from the database and rows is a pointer to a slice of structs
 	rows, err := DB.Query("SELECT * FROM learning")
 	if err != nil {
 		return learning, err
 	}
+	// Loop through the rows and add them to the learning slice
 	for rows.Next() {
 		var l Learning
+		// Scan the row into the learning struct
 		err = rows.Scan(&l.ID, &l.Header, &l.SubHeader, &l.Content, &l.Image)
 		if err != nil {
+			// If there is an error, return the error
 			return learning, err
 		}
+		// Add the learning to the learning slice
 		learning = append(learning, l)
 	}
+	// Sort the learning by id and return the latest learning
 	sort.Slice(learning, func(i, j int) bool {
 		return learning[i].ID > learning[j].ID
 	})
+	// Return the learning
 	return learning, nil
 }
 func GetLearningById(id uint) (Learning, error) {
+	// Get the learning from the database
 	var learning Learning
+	// Get the learning from the database with the id learning.ID 
 	err := DB.QueryRow("SELECT * FROM learning WHERE id = ?", id).Scan(&learning.ID, &learning.Header, &learning.SubHeader, &learning.Content, &learning.Image)
+	// Return the learning
 	return learning, err
 }
