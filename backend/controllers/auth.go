@@ -171,6 +171,7 @@ func ResetPassword(c *gin.Context) {
 	//return message success and random password 
 	c.JSON(200, gin.H{"message": "success","password":string(b)})
 }
+
 func UpdateProfile(c *gin.Context) {
 	//get token from header Authorization
 	var input UpdateProfileInput
@@ -207,3 +208,4 @@ func UpdateProfile(c *gin.Context) {
 	//return message success
 	c.JSON(200, gin.H{"message": "success"})
 }
+
