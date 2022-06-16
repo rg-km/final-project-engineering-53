@@ -1,33 +1,52 @@
-import { Container, Button, HStack, Image, Link, Spacer } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
+import {
+  Container,
+  Button,
+  HStack,
+  Image,
+  Link as ChakraLink,
+  Spacer,
+  Divider,
+} from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
 
 export default function Navbar() {
+  const PATHS = [
+    { to: "/", label: "Home" },
+    { to: "/materials", label: "Materials" },
+    // { to: "", label: "Profile" },
+  ];
+
   return (
     <>
       <Container as="header" maxW="container.xl" height="100px">
         <HStack as="nav" height="full" fontWeight="normal">
-          <Link href="/">
+          <NavLink to="/">
             <Image src={Logo} boxSize="50px" alt="App Logo" />
-          </Link>
+          </NavLink>
 
           <Spacer />
 
           <HStack spacing={24}>
             <HStack spacing={12} fontSize="xl" fontWeight="normal">
-              <Link href="#" fontWeight="bold">
-                Home
-              </Link>
-              <Link href="#">Material</Link>
-              <Link href="#" opacity={0.5}>
-                Profile
-              </Link>
+              {PATHS.map((path) => (
+                <ChakraLink
+                  as={NavLink}
+                  key={path.to}
+                  to={path.to}
+                  _activeLink={{ fontWeight: "bold" }}
+                >
+                  {path.label}
+                </ChakraLink>
+              ))}
+              <ChakraLink opacity={0.6}>Profile</ChakraLink>
             </HStack>
 
             <HStack spacing={12} fontSize="xl" fontWeight="normal">
-              <Link href="#">Login</Link>
+              <ChakraLink>Login</ChakraLink>
               <Button
                 as="a"
-                href="#"
+                // href="#"
                 size="xl"
                 width="160px"
                 height="40px"
@@ -42,6 +61,8 @@ export default function Navbar() {
             </HStack>
           </HStack>
         </HStack>
+
+        <Divider borderColor="gray.300" />
       </Container>
     </>
   );

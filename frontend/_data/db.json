@@ -1,0 +1,65 @@
+{
+  "materials": [
+    {
+      "id": 1,
+      "title": "Teknik Informatika",
+      "title_eng": "Informatics Engineering",
+      "thumbnail": "https://picsum.photos/id/48/600/300",
+      "description": "Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.",
+      "subjects": [
+        "Sistem Operasi",
+        "Analisis dan Desain Berorientasi Object",
+        "Computer Graphic",
+        "Arsitektur Komputer",
+        "Jaringan Komputer",
+        "Sistem Berkas",
+        "Basis Data",
+        "Pemrograman Bahasa X (X mengacu pada nama bahasa pemrograman)",
+        "Pemrograman Jaringan",
+        "Pemrograman Web",
+        "User Interface Design (Interaksi Manusia dan Komputer)",
+        "Rekayasa Perangkat Lunak"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Sistem Informasi",
+      "title_eng": "Information System",
+      "thumbnail": "https://picsum.photos/id/62/600/300",
+      "description": "Sistem informasi secara general dikenal sebagai perangkat lunak yang dapat membantu pengaturan atau analisis data. Sistem informasi memiliki tujuan utama untuk mengubah data mentah menjadi informasi yang berguna bagi suatu instansi atau organisasi. Lewat hasil pemrosesan data menjadi informasi inilah nantinya pengambilan keputusan dalam suatu organisasi dapat dilakukan secara observatif.",
+      "subjects": ["belum"]
+    },
+    {
+      "id": 3,
+      "title": "Sains Data",
+      "title_eng": "Data Science",
+      "thumbnail": "https://picsum.photos/id/106/600/300",
+      "description": "Sains Data merupakan ilmu terapan yang secara khusus mempelajari dan menganalisis data. Fungsi ilmu Sains Data dalam era digital dan big data saat ini cukup penting karena begitu melimpahnya data yang tersedia. Data menyediakan informasi yang dapat menentukan keputusan penting dalam berbagai sektor industri. Sains Data adalah ilmu multidisipliner yang dapat diterapkan di berbagai bidang. Sains Data dapat diterapkan di bidang kesehatan, pemerintahan, bisnis, perbankan, keuangan, manufaktur, pemasaran, dan lain-lain.",
+      "subjects": ["belum"]
+    },
+    {
+      "id": 4,
+      "title": "Sistem Komputer",
+      "title_eng": "Computer System",
+      "thumbnail": "https://picsum.photos/id/7/600/300",
+      "description": "Sistem Komputer adalah kumpulan perangkat-perangkat komputer yang saling berhubungan dan berinteraksi satu sama lain untuk melakukan proses pengolahan data, sehingga dapat menghasilkan informasi yang diharapkan oleh penggunanya. Perangkat yang terdapat pada Sistem Komputer diantaranya Hardware, Software, dan Brainware. Perangkat tersebut memiliki fungsinya masing-masing pada sistem komputer, pada saat beroperasi pun ketiganya saling bergantung dan saling mendukung satu sama lain, seperti hardware tidak dapat berinteraksi dengan brainware tanpa software dan juga sebaliknya.",
+      "subjects": ["belum"]
+    },
+    {
+      "id": 5,
+      "title": "Teknologi Informasi",
+      "title_eng": "Information Technology",
+      "thumbnail": "https://picsum.photos/id/98/600/300",
+      "description": "Prodi teknologi informasi adalah prodi yang berkomitmen untuk mencapai lulusan sebagai sarjana teknik di bidang teknik informasi yang difasilitasi oleh teknologi. Prodi berfokus menghasilkan lulusan yang berperan sebagai agen perusahaan di bidang rekayasa perangkat lunak dan perangkat keras. Dengan kehadiran teknologi informasi dan komunikasi di berbagai berbagai bidang kehidupan, memberi peluang bagi lulusan untuk bekerja di berbagai domain kehidupan.",
+      "subjects": ["belum"]
+    },
+    {
+      "id": 6,
+      "title": "Kecerdasan Buatan",
+      "title_eng": "Artificial Intelligence",
+      "thumbnail": "https://picsum.photos/id/26/600/300",
+      "description": "Jurusan Teknik Robotika dan Kecerdasan Buatan merupakan satu - satunya jurusan yang berhubungan dengan kecerdasan buatan di Indonesia. Jurusan ini baru diresmikan pada tahun 2020 lalu, tepatnya ada di Universitas Airlangga. Sebelum memutuskan untuk masuk jurusan ini, ada baiknya kamu menyimak beberapa materi berikut. Selain untuk pengenalan, juga sebagai persiapan untuk dapat bersaing memperebutkan kuota jurusan yang sangat ketat ini.",
+      "subjects": ["belum"]
+    }
+  ]
+}
