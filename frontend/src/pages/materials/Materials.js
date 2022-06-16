@@ -1,28 +1,40 @@
-import { Container, Heading, ListItem, Text, UnorderedList } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, Container, Grid, Heading, Text, VStack } from "@chakra-ui/react";
 import useFetch from "../../hooks/useFetch";
+import MaterialCard from "../../components/cards/MaterialCard";
 
 export default function Materials() {
   const { data: materials, loading } = useFetch("http://localhost:8000/materials");
 
   return (
-    <Container maxW="container.xl" mt={16}>
-      <Heading as="h1" pb={8}>
-        Material
-      </Heading>
+    <Container maxW="container.xl">
+      <VStack w="full" justify="center" spacing={8} my={24}>
+        <Heading as="h2" fontSize="5xl">
+          Choose your interest!
+        </Heading>
+        <Text fontSize="2xl" opacity={0.9}>
+          Search and select the major journey you want to know!
+        </Text>
+      </VStack>
 
       {loading && <Text>Loading...</Text>}
 
-      {
-        <UnorderedList spacing={2}>
-          {materials &&
-            materials.map((material) => (
-              <ListItem key={material.id} _hover={{ textDecoration: "underline" }}>
-                <Link to={`/materials/${material.id}`}>{material.title}</Link>
-              </ListItem>
-            ))}
-        </UnorderedList>
-      }
+      <Box as="section" minH="100vh" mb={24}>
+        {
+          <Grid templateColumns="repeat(3, 1fr)" gap={12}>
+            {materials &&
+              materials.map((material) => (
+                <MaterialCard
+                  key={material.id}
+                  id={material.id}
+                  thumbnail={material.thumbnail}
+                  title={material.title}
+                  title_eng={material.title_eng}
+                  description={material.description}
+                />
+              ))}
+          </Grid>
+        }
+      </Box>
     </Container>
   );
 }
