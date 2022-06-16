@@ -1,5 +1,7 @@
 import { Container, Button, HStack, Image, Link, Spacer } from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
+import { Routes, Route } from "react-router-dom";
+import Material from "../../pages/Material"
 
 export default function Navbar() {
   return (
@@ -17,7 +19,10 @@ export default function Navbar() {
               <Link href="#" fontWeight="bold">
                 Home
               </Link>
-              <Link href="#">Material</Link>
+              <Link to="/material">Material</Link>
+              <Routes>
+                <Route path="material" element={<Material />} />
+              </Routes>
               <Link href="#" opacity={0.5}>
                 Profile
               </Link>
