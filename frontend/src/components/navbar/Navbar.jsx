@@ -1,11 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { Container, Button, HStack, Image, Link as ChakraLink, Spacer } from "@chakra-ui/react";
+import {
+  Container,
+  Button,
+  HStack,
+  Image,
+  Link as ChakraLink,
+  Spacer,
+  Divider,
+} from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
 
 export default function Navbar() {
   const PATHS = [
     { to: "/", label: "Home" },
-    { to: "/material", label: "Material" },
+    { to: "/materials", label: "Materials" },
     // { to: "", label: "Profile" },
   ];
 
@@ -24,7 +32,6 @@ export default function Navbar() {
               {PATHS.map((path) => (
                 <ChakraLink
                   as={NavLink}
-                  end
                   key={path.to}
                   to={path.to}
                   _activeLink={{ fontWeight: "bold" }}
@@ -54,6 +61,8 @@ export default function Navbar() {
             </HStack>
           </HStack>
         </HStack>
+
+        <Divider borderColor="gray.300" />
       </Container>
     </>
   );
