@@ -1,5 +1,5 @@
 import { Box, Container, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/react";
-import SubjectCard from "../cards/SubjectCard";
+import MaterialCard from "../cards/MaterialCard";
 import useFetch from "../../hooks/useFetch";
 
 export default function Learning() {
@@ -25,7 +25,8 @@ export default function Learning() {
                 <HStack justify="space-between" py={16} spacing={8}>
                   {materials &&
                     materials.map((data) => (
-                      <SubjectCard
+                      <MaterialCard
+                        cardWidth="400px"
                         key={data.id}
                         id={data.id}
                         thumbnail={data.thumbnail}
