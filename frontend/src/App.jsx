@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import Materials from "./pages/materials/Materials";
 import MaterialDetail from "./pages/materials/MaterialDetail";
+import Footer from "./components/sections/Footer";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path=":id" element={<MaterialDetail />} />
         </Route>
       </Routes>
+      <Footer />
     </Router>
   );
 }

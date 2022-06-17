@@ -1,5 +1,5 @@
 import { Box, Container, Heading, HStack, Stack, Text } from "@chakra-ui/react";
-import SubjectCard from "../components/cards/SubjectCard";
+import SubjectCard from "../components/cards/MaterialCard";
 import Navbar from "../components/navbar/Navbar";
 
 export default function Material() {
