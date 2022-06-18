@@ -1,10 +1,13 @@
 package routes
+
 import (
-	"github.com/gin-gonic/gin"
-	"futuremap/models"
 	"futuremap/controllers"
 	"futuremap/middlewares"
+	"futuremap/models"
+
+	"github.com/gin-gonic/gin"
 )
+
 func SetupRoutes() *gin.Engine {
 	models.ConnectDatabase()
 	r := gin.Default()
@@ -24,7 +27,9 @@ func SetupRoutes() *gin.Engine {
 	//=============================Middlewares for Admin======================================================
 	admin := r.Group("/admin")
 	admin.Use(middlewares.JwtAuthMiddlewareAdmin())
-	admin.GET("/user",controllers.CurrentUser)
+	admin.PUT("/learning/:id", controllers.UpdateLearning)
+	admin.DELETE("/learning/:id", controllers.DeleteLearning)
+	admin.GET("/user", controllers.CurrentUser)
 	admin.PUT("/update/profile", controllers.UpdateProfile)
 	admin.POST("/learning", controllers.Learning)
 	admin.GET("/learning", controllers.LearningList)
