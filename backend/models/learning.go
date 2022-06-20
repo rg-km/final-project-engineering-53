@@ -81,3 +81,30 @@ func DeleteLearning(id uint) error {
 	_, err = DB.Exec("DELETE FROM learning WHERE id = ?", id)
 	return err
 }
+func SearchLearning(keyword string) ([]Learning, error) {
+	// Get all the learning from the database
+	var learning []Learning
+	//find all the learning from the database and rows is a pointer to a slice of structs
+	rows, err := DB.Query("SELECT * FROM learning WHERE header LIKE ? OR sub_header LIKE ?", "%"+keyword+"%", "%"+keyword+"%")
+	if err != nil {
+		return learning, err
+	}
+	// Loop through the rows and add them to the learning slice
+	for rows.Next() {
+		// Create a new learning struct
+		var l Learning
+		// Scan the row into the learning struct
+		err = rows.Scan(&l.ID, &l.Header, &l.SubHeader, &l.Content, &l.Image)
+		if err != nil {
+			return learning, err
+		}
+		// Add the learning to the learning slice
+		learning = append(learning, l)
+	}
+	// Return the learning slice sorted by id
+	sort.Slice(learning, func(i, j int) bool {
+		return learning[i].ID > learning[j].ID
+	})
+	// Return the learning
+	return learning, nil
+}

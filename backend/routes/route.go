@@ -18,6 +18,7 @@ func SetupRoutes() *gin.Engine {
 	public.POST("/reset/password", controllers.ResetPassword)
 	public.GET("/learning", controllers.LearningList)
 	public.GET("/learning/:id/discussion", controllers.ShowDiscussion)
+	public.POST("/search", controllers.SearchLearning)
 	//=============================Middlewares for Client======================================================
 	client := r.Group("/client")
 	client.Use(middlewares.JwtAuthMiddleware())
