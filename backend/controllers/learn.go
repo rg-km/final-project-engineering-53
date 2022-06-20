@@ -4,7 +4,7 @@ import (
 	"futuremap/models"
 	"math/rand"
 	"strconv"
-
+	"futuremap/utils/token"
 	"github.com/gin-gonic/gin"
 )
 
@@ -71,10 +71,49 @@ func GetLearningById(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
+	//extract token from id user if click detail learning
+	user_id,err := token.ExtractTokenID(c)
+	//if errror, return with error message
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	history := models.History{}
+	//set user id to history
+	history.UserID = uint(user_id)
+	//set learning id to history
+	history.LearningID = uint(id_uint)
+	//set learning header id to history
+	history.Header = learning.Header
+	//set learning sub header id to history
+	history.SubHeader = learning.SubHeader
+	//save history to database with function SaveHistory from models history.go
+	_,err = models.SaveHistory(&history)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
 	//if no error, return with learning
 	c.JSON(200, gin.H{"learning": learning})
 }
-
+//get history list from database
+func GetHistory(c *gin.Context){
+	//extract token and show history list by id 
+	user_id,err := token.ExtractTokenID(c)
+	//if error, return with error message
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//get history list from database with user id and function GetHistory from models history.go
+	history,err := models.GetHistory(uint(user_id))
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//if no error, return with history list
+	c.JSON(200, gin.H{"history": history})
+}
 func UpdateLearning(c *gin.Context) {
 	id := c.Param("id")
 	id_uint, err := strconv.ParseUint(id, 10, 64)
