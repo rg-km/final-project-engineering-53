@@ -21,4 +21,5 @@ func ConnectDatabase() {
 	DB.Exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT, password TEXT, role TEXT, username TEXT, phone TEXT)")
 	DB.Exec("CREATE TABLE IF NOT EXISTS learning (id INTEGER PRIMARY KEY, header TEXT, sub_header TEXT, content TEXT, image TEXT)")
 	DB.Exec("CREATE TABLE IF NOT EXISTS histories (id INTEGER PRIMARY KEY, user_id INTEGER, learning_id INTEGER, header TEXT, sub_header TEXT)")
+	DB.Exec("CREATE TABLE IF NOT EXISTS discussions (id INTEGER PRIMARY KEY, user_id INTEGER, learning_id INTEGER, username TEXT, message TEXT, created_at TEXT)")
 }

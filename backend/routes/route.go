@@ -17,6 +17,7 @@ func SetupRoutes() *gin.Engine {
 	public.POST("/register/admin", controllers.RegisterAdmin)
 	public.POST("/reset/password", controllers.ResetPassword)
 	public.GET("/learning", controllers.LearningList)
+	public.GET("/learning/:id/discussion", controllers.ShowDiscussion)
 	//=============================Middlewares for Client======================================================
 	client := r.Group("/client")
 	client.Use(middlewares.JwtAuthMiddleware())
@@ -25,6 +26,7 @@ func SetupRoutes() *gin.Engine {
 	client.GET("/learning", controllers.LearningList)
 	client.GET("/learning/:id", controllers.GetLearningById)
 	client.POST("/learning/:id", controllers.GetLearningById)
+	client.POST("/learning/:id/discussion", controllers.MakeDiscussion)
 	//=============================Middlewares for Admin======================================================
 	admin := r.Group("/admin")
 	admin.Use(middlewares.JwtAuthMiddlewareAdmin())
@@ -36,5 +38,6 @@ func SetupRoutes() *gin.Engine {
 	admin.GET("/learning", controllers.LearningList)
 	admin.GET("/learning/:id", controllers.GetLearningById)
 	admin.POST("/learning/:id", controllers.GetLearningById)
+	admin.POST("/learning/:id/discussion", controllers.MakeDiscussion)
 	return r
 }
