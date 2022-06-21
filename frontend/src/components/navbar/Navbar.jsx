@@ -45,8 +45,8 @@ export default function Navbar() {
             <HStack spacing={12} fontSize="xl" fontWeight="normal">
               <ChakraLink>Login</ChakraLink>
               <Button
-                as="a"
-                // href="#"
+                as={NavLink}
+                to="/register"
                 size="xl"
                 width="160px"
                 height="40px"

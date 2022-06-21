@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import Materials from "./pages/materials/Materials";
 import MaterialDetail from "./pages/materials/MaterialDetail";
+import Register from "./pages/Register";
 
 export default function App() {
   return (
@@ -17,6 +18,9 @@ export default function App() {
           <Route index element={<Materials />} />
           <Route path=":id" element={<MaterialDetail />} />
         </Route>
+
+        {/* Auth  */}
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );

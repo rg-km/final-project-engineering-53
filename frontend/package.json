@@ -13,6 +13,10 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1"
   },
+  "devDependencies": {
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
