@@ -29,6 +29,18 @@
       "password": "$2a$10$b.t1ByhegQaqGjKtMvPw6uA5TU5yWvhByVF7wf.AlZIEnFSjtplRm",
       "username": "New Layout User ",
       "id": 5
+    },
+    {
+      "email": "halosob@email.com",
+      "password": "$2a$10$Xfec8qdc4oh5tYYyr.Rq0eLNbnK2dvHQ0LCmhRch/u1aiElknlNRe",
+      "username": "halo sobat ",
+      "id": 6
+    },
+    {
+      "email": "newsobat@sobat.com",
+      "password": "$2a$10$l6zSW1Jfq.iKtOkyolue8OpZA8bNezKbTifDFLWdLWaQbDltzdYS2",
+      "username": "sobat baru",
+      "id": 7
     }
   ],
   "materials": [

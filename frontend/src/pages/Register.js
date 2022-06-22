@@ -33,6 +33,10 @@ export default function Register() {
         }
       );
       console.log(response.data);
+      alert("Success");
+      setEmail("");
+      setPassword("");
+      setUsername("");
       //
     } catch (error) {
       console.log(error);
@@ -66,6 +70,7 @@ export default function Register() {
                 type="username"
                 aria-label="username"
                 onChange={(e) => setUsername(e.target.value)}
+                value={username}
                 borderRadius="50"
                 mb="10"
                 color="black"
@@ -78,6 +83,7 @@ export default function Register() {
                 type="email"
                 aria-label="email"
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 borderRadius="50"
                 mb="10"
                 color="black"
@@ -90,6 +96,7 @@ export default function Register() {
                 type="password"
                 aria-label="password"
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 borderRadius="50"
                 color="black"
                 mb={16}
