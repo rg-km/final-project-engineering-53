@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import AuthLayout from "../components/layouts/AuthLayout";
 
-const Login = () => {
+export default function Login() {
   return (
     <AuthLayout>
       <Box
@@ -85,5 +85,4 @@ const Login = () => {
       </Box>
     </AuthLayout>
   );
-};
-export default Login;
+}

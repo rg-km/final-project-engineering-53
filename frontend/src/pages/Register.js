@@ -1,3 +1,5 @@
+import { useState } from "react";
+import axios from "../api/axios";
 import {
   Box,
   Button,
@@ -12,7 +14,35 @@ import {
 import { Link } from "react-router-dom";
 import AuthLayout from "../components/layouts/AuthLayout";
 
+const REGISTER_URL = "/register";
+
 export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ email, password, username }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      alert("Success");
+      setEmail("");
+      setPassword("");
+      setUsername("");
+      //
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthLayout>
       <Box
@@ -26,7 +56,7 @@ export default function Register() {
         p={16}
         mt={-4}
       >
-        <form action="submit">
+        <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
             <Heading mb={6} color="black">
               Register
@@ -39,6 +69,8 @@ export default function Register() {
                 id="username"
                 type="username"
                 aria-label="username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
                 borderRadius="50"
                 mb="10"
                 color="black"
@@ -50,6 +82,8 @@ export default function Register() {
                 id="email"
                 type="email"
                 aria-label="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 borderRadius="50"
                 mb="10"
                 color="black"
@@ -61,6 +95,8 @@ export default function Register() {
                 id="password"
                 type="password"
                 aria-label="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 borderRadius="50"
                 color="black"
                 mb={16}
