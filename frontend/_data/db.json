@@ -2,45 +2,9 @@
   "users": [
     {
       "email": "bara@user.com",
-      "password": "$2a$10$iNSoVUG8rHx/CeBDopU5keZOUNsZ/qhCo2Hmwa32EGCtBxbeKEWj6",
-      "username": "ilhambara",
+      "password": "$2a$10$.B4oJYbyWKWT0ktBRknileUvvq/V/ZM3uHUTA4pKb6lmwn2hYiYma",
+      "username": "bara",
       "id": 1
-    },
-    {
-      "email": "user@email.com",
-      "password": "$2a$10$LrrkLxjiFpwOShA8j6RrbOJub8C59LvpI7qTh7ot3hGPoGMeq/Ky6",
-      "username": "test user 1",
-      "id": 2
-    },
-    {
-      "email": "user2@email.com",
-      "password": "$2a$10$Om7XPpD4GwM7duQqdYWyLOC6zxtuqJMIEr8Gbpgt5RqwLpg2dAde6",
-      "username": "user 2",
-      "id": 3
-    },
-    {
-      "email": "user3@email.com",
-      "password": "$2a$10$PPnJCh.SKC3nGcwUE3dmy.YR8kcfidn1gQAOaRg4M.SE6NEFL7S8C",
-      "username": "user 3",
-      "id": 4
-    },
-    {
-      "email": "newlayout@user.com",
-      "password": "$2a$10$b.t1ByhegQaqGjKtMvPw6uA5TU5yWvhByVF7wf.AlZIEnFSjtplRm",
-      "username": "New Layout User ",
-      "id": 5
-    },
-    {
-      "email": "halosob@email.com",
-      "password": "$2a$10$Xfec8qdc4oh5tYYyr.Rq0eLNbnK2dvHQ0LCmhRch/u1aiElknlNRe",
-      "username": "halo sobat ",
-      "id": 6
-    },
-    {
-      "email": "newsobat@sobat.com",
-      "password": "$2a$10$l6zSW1Jfq.iKtOkyolue8OpZA8bNezKbTifDFLWdLWaQbDltzdYS2",
-      "username": "sobat baru",
-      "id": 7
     }
   ],
   "materials": [
