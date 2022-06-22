@@ -6,6 +6,7 @@ import {
   Spacer,
   Stack,
   Text,
+  Divider,
 } from "@chakra-ui/react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
@@ -14,7 +15,9 @@ export default function Footer() {
     <>
       <Box as="footer" width="full" bgColor="#f8f7fc">
         <Container maxW="container.xl">
-          <Stack direction="row" minH="280px" height="full" py={20}>
+          <Divider borderColor="gray.300" />
+
+          <Stack direction="row" minH="280px" height="full" py={16}>
             <Box width="50%">
               <Heading fontSize="xl">Future Map</Heading>
               <Stack direction="row" marginTop={5}>
