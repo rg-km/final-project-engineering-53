@@ -1,16 +1,18 @@
 package models
 
 import (
+	"os"
 	"sort"
 )
 
 type Learning struct {
 	ID        uint   `json:"id"`
-	Header	string `json:"header"`
+	Header    string `json:"header"`
 	SubHeader string `json:"sub_header"`
-	Content	string `json:"content"`
-	Image	string `json:"image"`
+	Content   string `json:"content"`
+	Image     string `json:"image"`
 }
+
 func SaveLearning(learning *Learning) (uint, error) {
 	// Insert the learning into the database and get the id
 	err := DB.QueryRow("INSERT INTO learning (header, sub_header, content, image) VALUES (?, ?, ?, ?) RETURNING id", learning.Header, learning.SubHeader, learning.Content, learning.Image).Scan(&learning.ID)
@@ -46,8 +48,36 @@ func GetLearning() ([]Learning, error) {
 func GetLearningById(id uint) (Learning, error) {
 	// Get the learning from the database
 	var learning Learning
-	// Get the learning from the database with the id learning.ID 
+	// Get the learning from the database with the id learning.ID
 	err := DB.QueryRow("SELECT * FROM learning WHERE id = ?", id).Scan(&learning.ID, &learning.Header, &learning.SubHeader, &learning.Content, &learning.Image)
 	// Return the learning
 	return learning, err
+}
+
+func UpdateLearning(id uint, learning *Learning) (*Learning, error) {
+	var Learning Learning
+	err := DB.QueryRow("SELECT * FROM learning WHERE id = ?", id).Scan(&Learning.ID, &Learning.Header, &Learning.SubHeader, &Learning.Content, &Learning.Image)
+	if err != nil {
+		return nil, err
+	}
+	err = os.Remove(Learning.Image)
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = DB.Exec("UPDATE learning SET header = ?, sub_header = ?, content = ?, image = ? WHERE id = ?", learning.Header, learning.SubHeader, learning.Content, learning.Image, id)
+	return learning, err
+}
+func DeleteLearning(id uint) error {
+	var learning Learning
+	err := DB.QueryRow("SELECT * FROM learning WHERE id = ?", id).Scan(&learning.ID, &learning.Header, &learning.SubHeader, &learning.Content, &learning.Image)
+	if err != nil {
+		return err
+	}
+	err = os.Remove(learning.Image)
+	if err != nil {
+		return err
+	}
+	_, err = DB.Exec("DELETE FROM learning WHERE id = ?", id)
+	return err
 }
