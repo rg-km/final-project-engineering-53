@@ -23,7 +23,7 @@ const Login = () => {
         boxShadow="lg"
         borderRadius={16}
         p={16}
-        mt={24}
+        mt={-4}
       >
         <form action="submit">
           <Stack spacing={3}>

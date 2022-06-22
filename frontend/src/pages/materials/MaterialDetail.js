@@ -14,12 +14,14 @@ import useFetch from "../../hooks/useFetch";
 
 export default function MaterialDetail() {
   const { id } = useParams();
-  const { data: material, loading } = useFetch("http://localhost:8000/materials/" + id);
+  const { data: material, loading } = useFetch(
+    "http://localhost:8000/materials/" + id
+  );
 
   // console.log(material);
 
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.xl" minH="90vh">
       <Stack as="section" direction="column" spacing={16} my={24}>
         {loading && <Heading as="h1">Loading...</Heading>}
 
