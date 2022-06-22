@@ -58,7 +58,7 @@ export default function Footer() {
                     </Stack>
                 </Container>
                 <Stack bgColor="#2477FF" height={12}>
-                        <Text fontSize="sm" align="center" marginTop={3}>
+                        <Text fontSize="sm" align="center" marginTop={3} color="white">
                             Copyright Future Map 2022
                         </Text>
                 </Stack>
