@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Container, Heading, VStack } from "@chakra-ui/react";
 import BtnPrimary from "../buttons/BtnPrimary";
+import { Link } from "react-router-dom";
 
 export default function HomeCTA() {
   return (
@@ -28,7 +29,13 @@ export default function HomeCTA() {
               Ready to know your Future Map?
             </Heading>
 
-            <BtnPrimary title="Register Now" btnColor="white" textColor="#2477FF" />
+            <Link to="/register">
+              <BtnPrimary
+                title="Register Now"
+                btnColor="white"
+                textColor="#2477FF"
+              />
+            </Link>
           </VStack>
         </Container>
       </Box>
