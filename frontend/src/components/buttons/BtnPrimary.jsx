@@ -1,10 +1,10 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
 
-export default function BtnPrimary({ title, href, btnColor, textColor, scheme }) {
+export default function BtnPrimary({ as, title, href, btnColor, textColor, scheme }) {
   return (
     <Button
-      as="a"
+      as={as}
       href={href}
       pt={0.5}
       width="240px"
