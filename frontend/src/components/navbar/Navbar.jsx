@@ -10,8 +10,6 @@ import {
   Box,
 } from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
-import { Routes, Route } from "react-router-dom";
-import Material from "../../pages/Material"
 
 export default function Navbar() {
   const PATHS = [
