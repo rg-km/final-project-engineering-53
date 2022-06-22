@@ -54,7 +54,7 @@ export default function Register() {
         boxShadow="lg"
         borderRadius={16}
         p={16}
-        mt={24}
+        mt={-4}
       >
         <form onSubmit={handleSubmit}>
           <Stack spacing={3}>

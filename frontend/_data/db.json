@@ -5,6 +5,12 @@
       "password": "$2a$10$.B4oJYbyWKWT0ktBRknileUvvq/V/ZM3uHUTA4pKb6lmwn2hYiYma",
       "username": "bara",
       "id": 1
+    },
+    {
+      "email": "usernew1@user.com",
+      "password": "$2a$10$.WECZCaVGKmkyc6/RspO8e.TiZsHjHp9UJkD6YE2dYlbvRbW6R1eW",
+      "username": "user baru 1",
+      "id": 2
     }
   ],
   "materials": [

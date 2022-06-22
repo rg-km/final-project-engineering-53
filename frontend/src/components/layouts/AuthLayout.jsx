@@ -9,9 +9,6 @@ export default function AuthLayout({ children }) {
       bgSize="cover"
       bgPosition="center"
       bgRepeat="no-repeat"
-      position="absolute"
-      top={0}
-      zIndex={-1}
       bgColor="gray.400"
     >
       <Container maxW="container.xl" h="100vh" color="#1a202c">
