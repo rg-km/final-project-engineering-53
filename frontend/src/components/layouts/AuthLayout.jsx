@@ -1,10 +1,14 @@
 import { Box, Container, Flex } from "@chakra-ui/react";
 
-export default function BaseLayout({ children }) {
+export default function AuthLayout({ children }) {
   return (
     <Box
       as="section"
       width="full"
+      bgImage="url('/img/bg-hero-map.png')"
+      bgSize="cover"
+      bgPosition="center"
+      bgRepeat="no-repeat"
       position="absolute"
       top={0}
       zIndex={-1}
