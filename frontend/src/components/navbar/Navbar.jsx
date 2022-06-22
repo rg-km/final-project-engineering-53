@@ -7,6 +7,7 @@ import {
   Link as ChakraLink,
   Spacer,
   Divider,
+  Box,
 } from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
 
@@ -19,51 +20,59 @@ export default function Navbar() {
 
   return (
     <>
-      <Container as="header" maxW="container.xl" height="100px">
-        <HStack as="nav" height="full" fontWeight="normal">
-          <NavLink to="/">
-            <Image src={Logo} boxSize="50px" alt="App Logo" />
-          </NavLink>
+      <Box as="header" w="full" bgColor="#f8f7fc">
+        <Container maxW="container.xl" height="100px">
+          <HStack as="nav" height="full" fontWeight="normal">
+            <NavLink to="/">
+              <Image src={Logo} boxSize="50px" alt="App Logo" />
+            </NavLink>
 
-          <Spacer />
+            <Spacer />
 
-          <HStack spacing={24}>
-            <HStack spacing={12} fontSize="xl" fontWeight="normal">
-              {PATHS.map((path) => (
+            <HStack spacing={24}>
+              <HStack spacing={12} fontSize="xl" fontWeight="normal">
+                {PATHS.map((path) => (
+                  <ChakraLink
+                    as={NavLink}
+                    key={path.to}
+                    to={path.to}
+                    _activeLink={{ fontWeight: "bold" }}
+                  >
+                    {path.label}
+                  </ChakraLink>
+                ))}
+                <ChakraLink opacity={0.6}>Profile</ChakraLink>
+              </HStack>
+
+              <HStack spacing={12} fontSize="xl" fontWeight="normal">
                 <ChakraLink
                   as={NavLink}
-                  key={path.to}
-                  to={path.to}
+                  to="/login"
                   _activeLink={{ fontWeight: "bold" }}
                 >
-                  {path.label}
+                  Login
                 </ChakraLink>
-              ))}
-              <ChakraLink opacity={0.6}>Profile</ChakraLink>
-            </HStack>
-
-            <HStack spacing={12} fontSize="xl" fontWeight="normal">
-              <ChakraLink>Login</ChakraLink>
-              <Button
-                as="a"
-                // href="#"
-                size="xl"
-                width="160px"
-                height="40px"
-                fontWeight="normal"
-                variant="solid"
-                colorScheme="blue"
-                borderRadius="50px"
-                backgroundColor="#2477FF"
-              >
-                Register
-              </Button>
+                <Button
+                  as={NavLink}
+                  to="/register"
+                  size="xl"
+                  width="160px"
+                  height="40px"
+                  fontWeight="normal"
+                  variant="solid"
+                  colorScheme="blue"
+                  borderRadius="50px"
+                  backgroundColor="#2477FF"
+                >
+                  Register
+                </Button>
+              </HStack>
             </HStack>
           </HStack>
-        </HStack>
 
-        <Divider borderColor="gray.300" />
-      </Container>
+          <Divider borderColor="gray.300" />
+        </Container>
+      </Box>
     </>
   );
 }
