@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Button, Spacer, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Container, Heading, Button, Spacer, Stack, Text } from "@chakra-ui/react";
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export default function Footer() {
@@ -28,7 +28,7 @@ export default function Footer() {
                             <Text fontSize="xl">
                                 Office
                             </Text>
-                            <Text fontSize="sm">
+                            <Text fontSize="sm" marginTop={5}>
                                 Final Project
                             </Text>
                             <Text fontSize="sm">
@@ -45,7 +45,7 @@ export default function Footer() {
                             <Text fontSize="xl">
                                 Contact Person
                             </Text>
-                            <Text fontSize="sm">
+                            <Text fontSize="sm" marginTop={5}>
                                 +61 85123456780
                             </Text>
                             <Text fontSize="sm">
@@ -57,7 +57,7 @@ export default function Footer() {
                     </Box>
                     </Stack>
                 </Container>
-                <Stack bg={useColorModeValue('#2477FF')} height={12}>
+                <Stack bgColor="#2477FF" height={12}>
                         <Text fontSize="sm" align="center" marginTop={3}>
                             Copyright Future Map 2022
                         </Text>

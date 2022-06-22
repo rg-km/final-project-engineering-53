@@ -6,7 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import Materials from "./pages/materials/Materials";
 import MaterialDetail from "./pages/materials/MaterialDetail";
-import Footer from "./components/sections/Footer";
+import Footer from "./components/footer/Footer";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
