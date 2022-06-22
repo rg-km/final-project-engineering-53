@@ -20,8 +20,8 @@ export default function Navbar() {
 
   return (
     <>
-      <Box w="full" bgColor="#f8f7fc">
-        <Container as="header" maxW="container.xl" height="100px">
+      <Box as="header" w="full" bgColor="#f8f7fc">
+        <Container maxW="container.xl" height="100px">
           <HStack as="nav" height="full" fontWeight="normal">
             <NavLink to="/">
               <Image src={Logo} boxSize="50px" alt="App Logo" />

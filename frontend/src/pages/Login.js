@@ -1,59 +1,88 @@
-import React from "react";
 import {
   Box,
   Button,
-  Center,
+  Heading,
+  Text,
+  Input,
+  Stack,
   FormControl,
   FormLabel,
-  Heading,
-  Input,
 } from "@chakra-ui/react";
-import BaseLayout from "../components/layouts/BaseLayout";
+import { Link } from "react-router-dom";
+import AuthLayout from "../components/layouts/AuthLayout";
 
 export default function Login() {
   return (
-    <BaseLayout>
-      <Heading mb={6}>Login</Heading>
+    <AuthLayout>
       <Box
-        w="640px"
+        minW="720px"
+        minH="656px"
         h="fit-content"
-        border="1px solid"
-        borderColor="gray.200"
-        bgColor="#f8f7fc"
-        borderRadius={8}
+        backgroundColor="white"
+        alignItems="center"
         boxShadow="lg"
-        p={12}
+        borderRadius={16}
+        p={16}
+        mt={24}
       >
-        <form>
-          <FormControl>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <Input
-              id="email"
-              type="email"
-              // onChange={(e) => setEmail(e.target.value)}
-              borderColor="gray.400"
-              isRequired
-            />
-
-            <FormLabel htmlFor="password" mt={6}>
-              Password
-            </FormLabel>
-            <Input
-              id="password"
-              type="password"
-              // onChange={(e) => setPassword(e.target.value)}
-              borderColor="gray.400"
-              isRequired
-            />
-
-            <Center>
-              <Button mt={12} colorScheme="teal" type="submit">
-                Submit
-              </Button>
-            </Center>
-          </FormControl>
+        <form action="submit">
+          <Stack spacing={3}>
+            <Heading mb={6} color="black">
+              Login
+            </Heading>
+            <FormControl isRequired>
+              <FormLabel type="email" textColor="black">
+                Email:
+              </FormLabel>
+              <Input
+                id="email"
+                type="email"
+                aria-label="email"
+                borderRadius="50"
+                mb="10"
+                color="black"
+              />
+              <FormLabel type="password" textColor="black">
+                Password:
+              </FormLabel>
+              <Input
+                id="password"
+                type="password"
+                aria-label="password"
+                borderRadius="50"
+                color="black"
+              />
+              <Text textAlign="right" textColor="gray" mt="5" mb={16}>
+                <Button variant="link" isDisabled>
+                  Lupa Password
+                </Button>
+              </Text>
+            </FormControl>
+            <Button
+              type="submit"
+              colorScheme="blue"
+              color="white"
+              bgColor="#2477FF"
+              size="md"
+              borderRadius="50"
+            >
+              Login
+            </Button>
+            <Button
+              as={Link}
+              to="/register"
+              variant="outline"
+              colorScheme="whiteAlpha"
+              color="#2477FF"
+              bgColor="white"
+              size="md"
+              borderRadius="50"
+            >
+              Register
+            </Button>
+          </Stack>
         </form>
       </Box>
-    </BaseLayout>
+    </AuthLayout>
   );
 }
