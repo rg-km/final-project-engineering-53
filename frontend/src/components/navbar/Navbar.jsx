@@ -8,7 +8,6 @@ import {
   Link as ChakraLink,
   Spacer,
   Divider,
-  Box,
 } from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
 
