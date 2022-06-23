@@ -52,7 +52,7 @@ func LearningList(c *gin.Context) {
 		return
 	}
 	//if no error, return with learning list
-	c.JSON(200, gin.H{"learning": learning})
+	c.JSON(200, gin.H{"materials": learning})
 }
 func GetLearningById(c *gin.Context) {
 	//get learning id from url
@@ -94,7 +94,7 @@ func GetLearningById(c *gin.Context) {
 		return
 	}
 	//if no error, return with learning
-	c.JSON(200, gin.H{"learning": learning})
+	c.JSON(200, gin.H{"materials": learning})
 }
 //get history list from database
 func GetHistory(c *gin.Context){
@@ -154,3 +154,75 @@ func DeleteLearning(c *gin.Context) {
 	}
 	c.JSON(200, gin.H{"message": "success"})
 }
+func MakeDiscussion(c *gin.Context){
+	id := c.Param("id")
+	//get discussion by id learning
+	user_id,err := token.ExtractTokenID(c)
+	//extract token id user
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//convert id string to uint64 with function ParseUint from strconv package
+	learning_id, err := strconv.ParseUint(id, 10, 64)
+	if err != nil {
+		//if error, return with error message
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	discussion := models.Discussion{}
+	//set message to discussion
+	discussion.Message = c.PostForm("message")
+	//set user id to discussion
+	discussion.UserID = uint(user_id)
+	user,err := models.GetUserID(uint(user_id))
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//set user name to discussion
+	discussion.Username = user.Username
+	//get time now
+	discussion.CreatedAt = models.GetTimeNow()
+	//set learning id to discussion
+	discussion.LearningID = uint(learning_id)
+	//save discussion to database with function SaveDiscussion from models discussion.go
+	_,err = models.SaveDiscussion(&discussion)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//if no error, return with message success
+	c.JSON(200, gin.H{"message": "success"})
+}
+//show discussion by learning id
+func ShowDiscussion(c *gin.Context){
+	//get learning id from url
+	id := c.Param("id")
+	//convert id string to uint64 with function ParseUint from strconv package
+	id_uint, err := strconv.ParseUint(id, 10, 64)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//get discussion from database with learning id and function GetDiscussion from models discussion.go
+	discussion,err := models.GetDiscussionByLearningId(uint(id_uint))
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//if no error, return with discussion
+	c.JSON(200, gin.H{"discussion": discussion})
+}
+// func SearchLearning(c *gin.Context){
+// 	//get search from url
+// 	search := c.PostForm("search")
+// 	//get learning from database with search and function SearchLearning from models learning.go
+// 	learning,err := models.SearchLearning(search)
+// 	if err != nil {
+// 		c.JSON(400, gin.H{"error": err.Error()})
+// 		return
+// 	}
+// 	//if no error, return with learning
+// 	c.JSON(200, gin.H{"materials": learning})
+// }
