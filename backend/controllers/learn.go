@@ -52,7 +52,7 @@ func LearningList(c *gin.Context) {
 		return
 	}
 	//if no error, return with learning list
-	c.JSON(200, gin.H{"learning": learning})
+	c.JSON(200, gin.H{"materials": learning})
 }
 func GetLearningById(c *gin.Context) {
 	//get learning id from url
@@ -94,7 +94,7 @@ func GetLearningById(c *gin.Context) {
 		return
 	}
 	//if no error, return with learning
-	c.JSON(200, gin.H{"learning": learning})
+	c.JSON(200, gin.H{"materials": learning})
 }
 //get history list from database
 func GetHistory(c *gin.Context){
@@ -214,15 +214,15 @@ func ShowDiscussion(c *gin.Context){
 	//if no error, return with discussion
 	c.JSON(200, gin.H{"discussion": discussion})
 }
-func SearchLearning(c *gin.Context){
-	//get search from url
-	search := c.PostForm("search")
-	//get learning from database with search and function SearchLearning from models learning.go
-	learning,err := models.SearchLearning(search)
-	if err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
-		return
-	}
-	//if no error, return with learning
-	c.JSON(200, gin.H{"learning": learning})
-}
+// func SearchLearning(c *gin.Context){
+// 	//get search from url
+// 	search := c.PostForm("search")
+// 	//get learning from database with search and function SearchLearning from models learning.go
+// 	learning,err := models.SearchLearning(search)
+// 	if err != nil {
+// 		c.JSON(400, gin.H{"error": err.Error()})
+// 		return
+// 	}
+// 	//if no error, return with learning
+// 	c.JSON(200, gin.H{"materials": learning})
+// }
