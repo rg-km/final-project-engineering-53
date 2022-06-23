@@ -1,9 +1,6 @@
 import * as React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+import { Routes, Route } from "react-router-dom";
+import AppLayout from "./components/layouts/AppLayout";
 
 import Home from "./pages/Home";
 import Materials from "./pages/materials/Materials";
@@ -14,27 +11,29 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+import NotFound from "./pages/404";
+
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop>
-        <Navbar />
-        <Routes>
-          {/* User Auth  */}
-          <Route path="/" element={<Home />} />
-          <Route path="materials">
-            <Route index element={<Materials />} />
-            <Route path=":id" element={<MaterialDetail />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        {/* Public Routes  */}
+        <Route path="/" element={<Home />} />
+        <Route path="/materials">
+          <Route index element={<Materials />} />
+          <Route path=":id" element={<MaterialDetail />} />
+        </Route>
 
-          {/* Admin Routes  */}
-          <Route path="/admin/register" element={<AdminRegister />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-        </Routes>
-        <Footer />
-      </ScrollToTop>
-    </Router>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Admin Routes  */}
+        <Route path="/admin/register" element={<AdminRegister />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Find The Missing Routes  */}
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
