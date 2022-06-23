@@ -1,4 +1,5 @@
-import React from "react";
+import { useState } from "react";
+import axios from "../../api/axios";
 import {
   Box,
   Button,
@@ -13,9 +14,37 @@ import {
 import { Link } from "react-router-dom";
 import BaseLayout from "../../components/layouts/BaseLayout";
 
+const REGISTER_URL = "/register";
+
 export default function AdminRegister() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ email, password, username }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      alert("Success");
+      setEmail("");
+      setPassword("");
+      setUsername("");
+      //
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <BaseLayout>
+    <BaseLayout bgColor="gray.300">
       <Heading mb={6}>Register Admin</Heading>
       <Box
         w="640px"
@@ -27,13 +56,13 @@ export default function AdminRegister() {
         boxShadow="lg"
         p={12}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <FormControl isRequired>
             <FormLabel htmlFor="username">Username</FormLabel>
             <Input
               id="username"
               type="text"
-              // onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               borderColor="gray.400"
             />
 
@@ -43,7 +72,7 @@ export default function AdminRegister() {
             <Input
               id="email"
               type="email"
-              // onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               borderColor="gray.400"
             />
 
@@ -53,7 +82,7 @@ export default function AdminRegister() {
             <Input
               id="password"
               type="password"
-              // onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               borderColor="gray.400"
             />
 

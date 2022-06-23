@@ -15,7 +15,7 @@ import BaseLayout from "../../components/layouts/BaseLayout";
 
 export default function AdminLogin() {
   return (
-    <BaseLayout>
+    <BaseLayout bgColor="gray.300">
       <Heading mb={6}>Admin Login</Heading>
       <Box
         w="640px"

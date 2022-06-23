@@ -1,8 +1,8 @@
 import { Box, Container, Flex } from "@chakra-ui/react";
 
-export default function BaseLayout({ children }) {
+export default function BaseLayout({ children, bgColor }) {
   return (
-    <Box as="section" width="full" bgColor="gray.300">
+    <Box as="section" width="full" bgColor={bgColor}>
       <Container maxW="container.xl" h="90vh" color="#1a202c">
         <Flex
           w="full"
