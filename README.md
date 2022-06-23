@@ -55,7 +55,7 @@ JSON data Admin login:
 }
 ```
 
-Contoh response register dan login untuk Client, sama dengan Admin.
+Contoh response register dan login untuk User, sama dengan Admin.
 
 ---
 
@@ -85,7 +85,7 @@ npm install
 
 ### 🛠 Development Frontend
 
-Kita harus menjalankan 2 local sever pada project ini. Satu untuk `react-js` dan satunya lagi untuk local `json-sever` yang berfungsi sebagai endpoint API sementara.
+Kita harus menjalankan 2 local sever pada project ini. Satu untuk `react-js` dan satunya lagi untuk local `json-sever` beserta `json-server-auth` yang berfungsi sebagai endpoint API sementara.
 
 **react-js**
 
@@ -93,10 +93,10 @@ Kita harus menjalankan 2 local sever pada project ini. Satu untuk `react-js` dan
 npm run start
 ```
 
-**json-server** (dengan custom port: 8000)
+**json-server + json-server-auth** (dengan custom port: 8000)
 
 ```bash
-npx json-server --watch _data/db.json --port 8000
+json-server _data/db.json -m ./node_modules/json-server-auth --port 8000
 ```
 
 Kemudian periksa url [http://localhost:3000](http://localhost:3000) pada browser untuk melihat hasilnya.

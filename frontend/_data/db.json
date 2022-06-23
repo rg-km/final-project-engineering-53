@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "email": "bara@user.com",
+      "password": "$2a$10$.B4oJYbyWKWT0ktBRknileUvvq/V/ZM3uHUTA4pKb6lmwn2hYiYma",
+      "username": "bara",
+      "id": 1
+    },
+    {
+      "email": "usernew1@user.com",
+      "password": "$2a$10$.WECZCaVGKmkyc6/RspO8e.TiZsHjHp9UJkD6YE2dYlbvRbW6R1eW",
+      "username": "user baru 1",
+      "id": 2
+    }
+  ],
   "materials": [
     {
       "id": 1,
@@ -27,7 +41,9 @@
       "title_eng": "Information System",
       "thumbnail": "https://picsum.photos/id/62/600/300",
       "description": "Sistem informasi secara general dikenal sebagai perangkat lunak yang dapat membantu pengaturan atau analisis data. Sistem informasi memiliki tujuan utama untuk mengubah data mentah menjadi informasi yang berguna bagi suatu instansi atau organisasi. Lewat hasil pemrosesan data menjadi informasi inilah nantinya pengambilan keputusan dalam suatu organisasi dapat dilakukan secara observatif.",
-      "subjects": ["belum"]
+      "subjects": [
+        "belum"
+      ]
     },
     {
       "id": 3,
@@ -35,7 +51,9 @@
       "title_eng": "Data Science",
       "thumbnail": "https://picsum.photos/id/106/600/300",
       "description": "Sains Data merupakan ilmu terapan yang secara khusus mempelajari dan menganalisis data. Fungsi ilmu Sains Data dalam era digital dan big data saat ini cukup penting karena begitu melimpahnya data yang tersedia. Data menyediakan informasi yang dapat menentukan keputusan penting dalam berbagai sektor industri. Sains Data adalah ilmu multidisipliner yang dapat diterapkan di berbagai bidang. Sains Data dapat diterapkan di bidang kesehatan, pemerintahan, bisnis, perbankan, keuangan, manufaktur, pemasaran, dan lain-lain.",
-      "subjects": ["belum"]
+      "subjects": [
+        "belum"
+      ]
     },
     {
       "id": 4,
@@ -43,7 +61,9 @@
       "title_eng": "Computer System",
       "thumbnail": "https://picsum.photos/id/7/600/300",
       "description": "Sistem Komputer adalah kumpulan perangkat-perangkat komputer yang saling berhubungan dan berinteraksi satu sama lain untuk melakukan proses pengolahan data, sehingga dapat menghasilkan informasi yang diharapkan oleh penggunanya. Perangkat yang terdapat pada Sistem Komputer diantaranya Hardware, Software, dan Brainware. Perangkat tersebut memiliki fungsinya masing-masing pada sistem komputer, pada saat beroperasi pun ketiganya saling bergantung dan saling mendukung satu sama lain, seperti hardware tidak dapat berinteraksi dengan brainware tanpa software dan juga sebaliknya.",
-      "subjects": ["belum"]
+      "subjects": [
+        "belum"
+      ]
     },
     {
       "id": 5,
@@ -51,7 +71,9 @@
       "title_eng": "Information Technology",
       "thumbnail": "https://picsum.photos/id/98/600/300",
       "description": "Prodi teknologi informasi adalah prodi yang berkomitmen untuk mencapai lulusan sebagai sarjana teknik di bidang teknik informasi yang difasilitasi oleh teknologi. Prodi berfokus menghasilkan lulusan yang berperan sebagai agen perusahaan di bidang rekayasa perangkat lunak dan perangkat keras. Dengan kehadiran teknologi informasi dan komunikasi di berbagai berbagai bidang kehidupan, memberi peluang bagi lulusan untuk bekerja di berbagai domain kehidupan.",
-      "subjects": ["belum"]
+      "subjects": [
+        "belum"
+      ]
     },
     {
       "id": 6,
@@ -59,7 +81,9 @@
       "title_eng": "Artificial Intelligence",
       "thumbnail": "https://picsum.photos/id/26/600/300",
       "description": "Jurusan Teknik Robotika dan Kecerdasan Buatan merupakan satu - satunya jurusan yang berhubungan dengan kecerdasan buatan di Indonesia. Jurusan ini baru diresmikan pada tahun 2020 lalu, tepatnya ada di Universitas Airlangga. Sebelum memutuskan untuk masuk jurusan ini, ada baiknya kamu menyimak beberapa materi berikut. Selain untuk pengenalan, juga sebagai persiapan untuk dapat bersaing memperebutkan kuota jurusan yang sangat ketat ini.",
-      "subjects": ["belum"]
+      "subjects": [
+        "belum"
+      ]
     }
   ]
 }
