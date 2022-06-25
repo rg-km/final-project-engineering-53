@@ -1,12 +1,7 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import axios from "../../api/axiosGO";
-import {
-  Button,
-  Heading,
-  ListItem,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { Heading, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import BaseLayout from "../../components/layouts/BaseLayout";
 import { AdminCard } from "../../components/cards/AdminCard";
 
@@ -19,21 +14,23 @@ export default function Dashboard() {
   const token = localStorage.getItem("token");
   // console.log(token);
 
-  const handleButtonClick = async () => {
+  const handleLoggedInUser = async () => {
     try {
       const response = await axios.get(API_URL, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess(true);
       setUser(response?.data);
-      console.log(response?.data);
-
       //
     } catch (error) {
       alert("Unauthorized. Please login as admin!");
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    handleLoggedInUser();
+  }, []);
 
   return (
     <BaseLayout bgColor="gray.300">
@@ -42,9 +39,6 @@ export default function Dashboard() {
           Check User
         </Heading>
 
-        <Button colorScheme="blue" onClick={() => handleButtonClick()} mb={8}>
-          Get User
-        </Button>
         {success ? (
           <UnorderedList display="table">
             <ListItem>Username: {user.data.username}</ListItem>
