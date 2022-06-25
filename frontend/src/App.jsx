@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
-// import RequireAuth from "./helpers/RequireAuth";
+import RequireAuth from "./helpers/RequireAuth";
 import AppLayout from "./components/layouts/AppLayout";
 
 import NotFound from "./pages/404";
@@ -35,9 +35,9 @@ export default function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
 
         {/* Protected Routes  */}
-        {/* <Route element={<RequireAuth />}> */}
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        {/* </Route> */}
+        <Route element={<RequireAuth allowedRoles="admin" />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+        </Route>
 
         {/* Find The Missing Routes  */}
         <Route path="*" element={<NotFound />} />

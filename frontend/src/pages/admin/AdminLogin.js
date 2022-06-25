@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "../../api/axiosGO";
-import useAuth from "../../hooks/useAuth";
+
 import {
   Button,
   Center,
@@ -17,11 +17,9 @@ import { AdminCard } from "../../components/cards/AdminCard";
 const LOGIN_URL = "/login";
 
 export default function AdminLogin() {
-  const { setAuth } = useAuth();
-
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/admin/dashboard";
+  const from = location.state?.from?.pathname || "/admin/dashboard"; // redirect admin to dashboard
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,21 +38,15 @@ export default function AdminLogin() {
           withCredentials: false,
         }
       );
-      // console.log(response?.data);
-
-      //
       const accessToken = response?.data?.token;
-      // console.log(accessToken);
 
+      // set admin token and role in local storage
       localStorage.setItem("token", accessToken);
-      //
+      localStorage.setItem("role", "admin");
 
-      const roles = response?.data?.role;
-      setAuth({ email, password, accessToken, roles });
       setEmail("");
       setPassword("");
 
-      alert("Success");
       navigate(from, { replace: true });
       //
     } catch (error) {
