@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../../api/axios";
+import axios from "../../api/axiosGO";
 import {
   Box,
   Button,
@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import BaseLayout from "../../components/layouts/BaseLayout";
 
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/admin/register";
 
 export default function AdminRegister() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ export default function AdminRegister() {
         JSON.stringify({ email, password, username }),
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          withCredentials: false,
         }
       );
       console.log(response.data);
@@ -63,6 +63,7 @@ export default function AdminRegister() {
               id="username"
               type="text"
               onChange={(e) => setUsername(e.target.value)}
+              value={username}
               borderColor="gray.400"
             />
 
@@ -73,6 +74,7 @@ export default function AdminRegister() {
               id="email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
               borderColor="gray.400"
             />
 
@@ -83,6 +85,7 @@ export default function AdminRegister() {
               id="password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              value={password}
               borderColor="gray.400"
             />
 
