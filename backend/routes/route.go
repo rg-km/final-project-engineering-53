@@ -17,6 +17,7 @@ func SetupRoutes() *gin.Engine {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Authorization"},
+		AllowCredentials: true,
 		MaxAge: 12 * time.Hour,
 	}))
 	public := r.Group("/")
@@ -29,6 +30,7 @@ func SetupRoutes() *gin.Engine {
 	public.GET("/materials", controllers.LearningList)
 	public.GET("/materials/:id", controllers.GetLearningById)
 	public.GET("/materials/:id/discussion", controllers.ShowDiscussion)
+	public.GET("/search/:keyword", controllers.SearchLearning)
 	//=============================Middlewares for Client======================================================
 	client := r.Group("/client")
 	client.Use(middlewares.JwtAuthMiddleware())
