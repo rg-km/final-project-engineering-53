@@ -3,7 +3,14 @@ import useFetch from "../../hooks/useFetch";
 import MaterialCard from "../../components/cards/MaterialCard";
 
 export default function Materials() {
-  const { data: materials, loading } = useFetch("http://localhost:8000/materials");
+  const { data: materials, loading } = useFetch(
+    "http://localhost:8000/materials"
+  ); // from json-server
+  // const { data: materials, loading } = useFetch(
+  //   "http://localhost:8080/materials"
+  // ); // from go backend
+
+  // console.log(materials);
 
   return (
     <Container maxW="container.xl">
@@ -38,3 +45,8 @@ export default function Materials() {
     </Container>
   );
 }
+
+// title={material.header}
+// description={material.sub_header}
+// title_eng={material.header}
+// thumbnail={material.image}
