@@ -1,39 +1,78 @@
-import React from "react";
+import { useState } from "react";
+import axios from "../../api/axiosGO";
+import useAuth from "../../hooks/useAuth";
 import {
-  Box,
   Button,
   Center,
   FormControl,
   FormLabel,
-  Heading,
   Input,
   Link as ChakraLink,
   Text,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import BaseLayout from "../../components/layouts/BaseLayout";
+import { AdminCard } from "../../components/cards/AdminCard";
+
+const LOGIN_URL = "/login";
 
 export default function AdminLogin() {
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/admin/dashboard";
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ email, password }),
+        {
+          headers: {
+            Authorization: `Bearer Token`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: false,
+        }
+      );
+      // console.log(response?.data);
+
+      //
+      const accessToken = response?.data?.token;
+      // console.log(accessToken);
+
+      localStorage.setItem("token", accessToken);
+      //
+
+      const roles = response?.data?.role;
+      setAuth({ email, password, accessToken, roles });
+      setEmail("");
+      setPassword("");
+
+      alert("Success");
+      navigate(from, { replace: true });
+      //
+    } catch (error) {
+      alert("User not found!");
+      console.log(error);
+    }
+  };
+
   return (
     <BaseLayout bgColor="gray.300">
-      <Heading mb={6}>Admin Login</Heading>
-      <Box
-        w="640px"
-        h="fit-content"
-        border="1px solid"
-        borderColor="gray.200"
-        bgColor="#f8f7fc"
-        borderRadius={8}
-        boxShadow="lg"
-        p={12}
-      >
-        <form>
+      <AdminCard title="Admin Login">
+        <form onSubmit={handleSubmit}>
           <FormControl>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               id="email"
               type="email"
-              // onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               borderColor="gray.400"
               isRequired
             />
@@ -44,7 +83,7 @@ export default function AdminLogin() {
             <Input
               id="password"
               type="password"
-              // onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               borderColor="gray.400"
               isRequired
             />
@@ -56,7 +95,7 @@ export default function AdminLogin() {
             </Center>
           </FormControl>
         </form>
-      </Box>
+      </AdminCard>
 
       <Text mt={6}>
         <ChakraLink
