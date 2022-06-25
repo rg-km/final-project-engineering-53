@@ -12,7 +12,6 @@ export default function Dashboard() {
   const [success, setSuccess] = useState(false);
 
   const token = localStorage.getItem("token");
-  // console.log(token);
 
   const handleLoggedInUser = async () => {
     try {
@@ -21,6 +20,9 @@ export default function Dashboard() {
       });
       setSuccess(true);
       setUser(response?.data);
+
+      const email = response?.data?.data?.email;
+      localStorage.setItem("email", email);
       //
     } catch (error) {
       alert("Unauthorized. Please login as admin!");
