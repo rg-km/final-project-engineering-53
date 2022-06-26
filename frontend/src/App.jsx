@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import RequireAuth from "./helpers/RequireAuth";
-import UserLayout from "./components/layouts/UserLayout";
+import { UserLayout } from "./components/layouts/UserLayout";
+import { AdminLayout } from "./components/layouts/AdminLayout";
 
 import NotFound from "./pages/404";
 
@@ -20,31 +21,37 @@ import AdminHome from "./pages/admin/AdminHome";
 export default function App() {
   return (
     <Routes>
+      {/* User Layout */}
       <Route path="/" element={<UserLayout />}>
-        {/* Public Routes  */}
         <Route path="/" element={<Home />} />
         <Route path="/materials">
           <Route index element={<Materials />} />
           <Route path=":id" element={<MaterialDetail />} />
         </Route>
+        <Route path="/profile" element={<Profile />} />
 
-        {/* User Routes  */}
+        {/* Auth Routes - User */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+
+        {/* Auth Routes - Admin */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/register" element={<AdminRegister />} />
       </Route>
+      {/* User Layout */}
 
-      {/* Admin Routes  */}
-      <Route path="/admin/register" element={<AdminRegister />} />
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin/home" element={<AdminHome />} />
+      {/* Admin Layout */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin/home" element={<AdminHome />} />
 
-      {/* Protected Routes  */}
-      <Route element={<RequireAuth allowedRoles="admin" />}>
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+        {/* Protected Routes */}
+        <Route element={<RequireAuth allowedRoles="admin" />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+        </Route>
       </Route>
+      {/* Admin Layout */}
 
-      {/* Find The Missing Routes  */}
+      {/* Find The Missing Routes */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

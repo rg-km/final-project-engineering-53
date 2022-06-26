@@ -6,7 +6,7 @@ import Navbar from "../navbar/Navbar";
 import UserNavbar from "../navbar/UserNavbar";
 import ScrollToTop from "../ScrollToTop";
 
-const AppLayout = () => {
+export const UserLayout = () => {
   const { auth } = useAuth();
 
   return (
@@ -19,5 +19,3 @@ const AppLayout = () => {
     </main>
   );
 };
-
-export default AppLayout;
