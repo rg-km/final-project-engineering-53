@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import {
   Box,
   Container,
-  Button,
   HStack,
   Image,
   Link as ChakraLink,
@@ -10,13 +9,17 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
+import { UserProfilToast } from "../toasts/UserProfilToast";
+import { BtnRegister } from "../buttons/BtnRegister";
+import { UserLogout } from "../menu/UserLogout";
 
 export default function Navbar() {
   const PATHS = [
     { to: "/", label: "Home" },
     { to: "/materials", label: "Materials" },
-    // { to: "", label: "Profile" },
   ];
+
+  const USER_INFO = localStorage.getItem("username");
 
   return (
     <>
@@ -41,31 +44,39 @@ export default function Navbar() {
                     {path.label}
                   </ChakraLink>
                 ))}
-                <ChakraLink opacity={0.6}>Profile</ChakraLink>
+
+                {/* Show this menu if user not logged in  */}
+                {!USER_INFO ? (
+                  <UserProfilToast />
+                ) : (
+                  <ChakraLink
+                    as={NavLink}
+                    to="/profile"
+                    _activeLink={{ fontWeight: "bold" }}
+                  >
+                    Profile
+                  </ChakraLink>
+                )}
               </HStack>
 
               <HStack spacing={12} fontSize="xl" fontWeight="normal">
-                <ChakraLink
-                  as={NavLink}
-                  to="/login"
-                  _activeLink={{ fontWeight: "bold" }}
-                >
-                  Login
-                </ChakraLink>
-                <Button
-                  as={NavLink}
-                  to="/register"
-                  size="xl"
-                  width="160px"
-                  height="40px"
-                  fontWeight="normal"
-                  variant="solid"
-                  colorScheme="blue"
-                  borderRadius="50px"
-                  backgroundColor="#2477FF"
-                >
-                  Register
-                </Button>
+                {!USER_INFO ? (
+                  <>
+                    <ChakraLink
+                      as={NavLink}
+                      to="/login"
+                      _activeLink={{ fontWeight: "bold" }}
+                    >
+                      Login
+                    </ChakraLink>
+
+                    <BtnRegister />
+                  </>
+                ) : (
+                  <Box>
+                    <UserLogout>Hi, {USER_INFO}!</UserLogout>
+                  </Box>
+                )}
               </HStack>
             </HStack>
           </HStack>
