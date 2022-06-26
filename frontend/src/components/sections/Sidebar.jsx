@@ -1,33 +1,65 @@
-import { Avatar, Flex, Heading, Text } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
+import {
+  Avatar,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  StackDivider,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+// import { IconType } from "react-icons/lib";
 import { FiHome, FiBookOpen, FiUsers } from "react-icons/fi";
-import NavItem from "./NavItem";
+
+const SIDEBAR_LINKS = [
+  ["Dashboard", FiHome, "/Dashboard"],
+  ["Materials ", FiBookOpen, "/Materials"],
+  ["Users", FiUsers, "#"],
+];
 
 export default function Sidebar() {
   return (
-    <Flex
-      h="full"
+    <VStack
+      as="aside"
+      h="100vh"
+      w="fit-content"
+      minW="220px"
       border="2px solid"
       borderColor="gray.200"
-      justifyContent="space-between"
+      p={6}
     >
-      <Flex p="5%" flrxDir="column" w="100%" alignItems="flex-start" mb={4}>
-        <Flex mt={4} align="center">
-          {/* profil picture */}
-          <Avatar size="md" src="jpg" />
-          <Flex flexDir="column" ml={4}>
-            <Heading as="h3" size="sm">
-              Username
-            </Heading>
-            <Text>Admin</Text>
-          </Flex>
+      <VStack w="full" spacing={4}>
+        <Avatar size="lg" src="jpg" />
+        <Flex flexDir="column" textAlign="center">
+          <Heading as="h3" size="md">
+            Username
+          </Heading>
+          <Text>Admin</Text>
         </Flex>
-      </Flex>
+      </VStack>
 
-      <Flex p="5%" flexDir="column" alignItems="flex-start" as="nav">
-        <NavItem icon={FiHome} title="Home" />
-        <NavItem icon={FiBookOpen} title="Material" />
-        <NavItem icon={FiUsers} title="User" />
-      </Flex>
-    </Flex>
+      <VStack
+        as="nav"
+        divider={<StackDivider borderColor="gray.300" />}
+        align="left"
+        spacing={8}
+        pt={16}
+      >
+        {SIDEBAR_LINKS.map(([menu, AsIcon, href]) => (
+          <NavLink to={href} key={menu}>
+            <Button
+              w="full"
+              justifyContent="flex-start"
+              leftIcon={<Icon as={AsIcon} mb={1} />}
+              variant="ghost"
+              size="lg"
+            >
+              {menu}
+            </Button>
+          </NavLink>
+        ))}
+      </VStack>
+    </VStack>
   );
 }
