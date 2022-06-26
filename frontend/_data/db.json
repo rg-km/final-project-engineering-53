@@ -1,15 +1,16 @@
 {
   "users": [
     {
-      "email": "bara@user.com",
-      "password": "$2a$10$.B4oJYbyWKWT0ktBRknileUvvq/V/ZM3uHUTA4pKb6lmwn2hYiYma",
-      "username": "bara",
+      "email": "admin1@email.com",
+      "password": "$2a$10$o211PdPcUasxs9iI0Fr5Z.ngsUh1oUdfMJjnC4PF2SHUdwXw1c5sS",
+      "username": "admin 1",
+      "role": "admin",
       "id": 1
     },
     {
-      "email": "usernew1@user.com",
-      "password": "$2a$10$.WECZCaVGKmkyc6/RspO8e.TiZsHjHp9UJkD6YE2dYlbvRbW6R1eW",
-      "username": "user baru 1",
+      "email": "bara@user.com",
+      "password": "$2a$10$aAG8g5BgJU3K7n8Hv/ntvOAH70cqswUo9QcDsB4YiFsD9R8UI7k.O",
+      "username": "bara",
       "id": 2
     }
   ],
