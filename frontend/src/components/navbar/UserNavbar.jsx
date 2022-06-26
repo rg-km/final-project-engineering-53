@@ -9,14 +9,17 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import Logo from "../../assets/logo192.png";
-import { UserProfilToast } from "../toasts/UserProfilToast";
-import { BtnRegister } from "../buttons/BtnRegister";
+import { UserLogout } from "../menu/UserLogout";
+import useAuth from "../../hooks/useAuth";
 
-export default function Navbar() {
+export default function UserNavbar() {
   const PATHS = [
     { to: "/", label: "Home" },
     { to: "/materials", label: "Materials" },
+    { to: "/profile", label: "Profile" },
   ];
+
+  const { auth } = useAuth();
 
   return (
     <>
@@ -41,20 +44,12 @@ export default function Navbar() {
                     {path.label}
                   </ChakraLink>
                 ))}
-                {/* Show this menu if user is not logged in */}
-                <UserProfilToast />
               </HStack>
 
               <HStack spacing={12} fontSize="xl" fontWeight="normal">
-                <ChakraLink
-                  as={NavLink}
-                  to="/login"
-                  _activeLink={{ fontWeight: "bold" }}
-                >
-                  Login
-                </ChakraLink>
-
-                <BtnRegister />
+                <Box>
+                  <UserLogout>Hi, {auth.username}!</UserLogout>
+                </Box>
               </HStack>
             </HStack>
           </HStack>

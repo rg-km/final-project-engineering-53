@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../api/axios";
+import axios from "../api/axiosGO";
 import {
   Box,
   Button,
@@ -29,7 +29,7 @@ export default function Register() {
         JSON.stringify({ email, password, username }),
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          withCredentials: false,
         }
       );
       console.log(response.data);
