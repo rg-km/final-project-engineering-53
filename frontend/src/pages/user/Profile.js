@@ -24,10 +24,10 @@ export default function Profile() {
       setUser(response?.data);
 
       const username = response?.data?.data?.username;
-      localStorage.setItem("username", username);
+      const email = response?.data?.data?.email;
+      const role = response?.data?.data?.role;
 
-      setAuth({ username });
-
+      setAuth({ username, email, role });
       //
     } catch (error) {
       alert("Unauthorized. Please login first!");
