@@ -1,5 +1,6 @@
 import { useState } from "react";
-import axios from "../api/axiosGO";
+import axios from "../../api/axiosGO";
+
 import {
   Box,
   Button,
@@ -9,36 +10,44 @@ import {
   Stack,
   FormControl,
   FormLabel,
-  Link as ChakraLink,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import AuthLayout from "../components/layouts/AuthLayout";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import AuthLayout from "../../components/layouts/AuthLayout";
 
-const REGISTER_URL = "/register";
+const LOGIN_URL = "/login";
 
-export default function Register() {
+export default function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/profile"; // redirect user to profile
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ email, password, username }),
+        LOGIN_URL,
+        JSON.stringify({ email, password }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: false,
         }
       );
-      console.log(response.data);
-      alert("Success");
+      // console.log(response?.data);
+      const accessToken = response?.data?.token;
+
+      // set user token in local storage
+      localStorage.setItem("token", accessToken);
+
       setEmail("");
       setPassword("");
-      setUsername("");
+
+      navigate(from, { replace: true });
       //
     } catch (error) {
+      alert("User not found!");
       console.log(error);
     }
   };
@@ -59,22 +68,9 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
             <Heading mb={6} color="black">
-              Register
+              Login
             </Heading>
             <FormControl isRequired>
-              <FormLabel type="username" textColor="black">
-                Username:
-              </FormLabel>
-              <Input
-                id="username"
-                type="username"
-                aria-label="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-                borderRadius="50"
-                mb="10"
-                color="black"
-              />
               <FormLabel type="email" textColor="black">
                 Email:
               </FormLabel>
@@ -99,25 +95,35 @@ export default function Register() {
                 value={password}
                 borderRadius="50"
                 color="black"
-                mb={16}
               />
+              <Text textAlign="right" textColor="gray" mt="5" mb={16}>
+                <Button variant="link" isDisabled>
+                  Lupa Password
+                </Button>
+              </Text>
             </FormControl>
             <Button
               type="submit"
+              colorScheme="blue"
               color="white"
               bgColor="#2477FF"
-              colorScheme="blue"
+              size="md"
+              borderRadius="50"
+            >
+              Login
+            </Button>
+            <Button
+              as={Link}
+              to="/register"
+              variant="outline"
+              colorScheme="whiteAlpha"
+              color="#2477FF"
+              bgColor="white"
               size="md"
               borderRadius="50"
             >
               Register
             </Button>
-            <Text textAlign="center" fontWeight="medium">
-              Already have an account?{" "}
-              <ChakraLink as={Link} to="/login" fontWeight="semibold">
-                Login
-              </ChakraLink>
-            </Text>
           </Stack>
         </form>
       </Box>

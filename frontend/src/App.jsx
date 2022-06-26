@@ -5,18 +5,17 @@ import UserLayout from "./components/layouts/UserLayout";
 
 import NotFound from "./pages/404";
 
+import Login from "./pages/user/Login";
+import Register from "./pages/user/Register";
 import Home from "./pages/Home";
 import Materials from "./pages/materials/Materials";
 import MaterialDetail from "./pages/materials/MaterialDetail";
 
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-
-import AdminRegister from "./pages/admin/AdminRegister";
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminRegister from "./pages/admin/AdminRegister";
 import Dashboard from "./pages/admin/Dashboard";
 import Profile from "./pages/user/Profile";
-import AdminHome from "./pages/admin/Home";
+import AdminHome from "./pages/admin/AdminHome";
 
 export default function App() {
   return (
