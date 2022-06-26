@@ -6,31 +6,81 @@ import (
 	"strconv"
 	"futuremap/utils/token"
 	"github.com/gin-gonic/gin"
-)
 
+
+	"context"
+	"fmt"
+	"io"
+	"log"
+
+
+	firebase "firebase.google.com/go"
+
+	"cloud.google.com/go/firestore"
+	cloud "cloud.google.com/go/storage"
+
+	"google.golang.org/api/option"
+)
+type App struct {
+	ctx     context.Context
+	client  *firestore.Client
+	storage *cloud.Client
+}
+type Image struct {
+	Image string `json:"image"`
+}
+func (r *App) Init(){
+	r.ctx = context.Background()
+	sa := option.WithCredentialsFile("futurego.json")
+	app, err := firebase.NewApp(r.ctx, nil, sa)
+	if err != nil {
+		log.Fatalf("error initializing app: %v\n", err)
+	}
+	r.client, err = app.Firestore(r.ctx)
+	if err != nil {
+		log.Fatalf("error initializing firestore: %v\n", err)
+	}
+	r.storage, err = cloud.NewClient(r.ctx, option.WithCredentialsFile("futurego.json"))
+	if err != nil {
+		log.Fatalf("error initializing storage: %v\n", err)
+	}
+}
 func Learning(c *gin.Context) {
+	var route App
 	//input learning data with post form method
 	learning := models.Learning{}
 	learning.Header = c.PostForm("header")
 	learning.SubHeader = c.PostForm("sub_header")
 	learning.Content = c.PostForm("content")
-	//input image data with post formfile method
-	image, err := c.FormFile("image")
+	//save image with function UploadImage from models learning.go
+	file, handler, err := c.FormFile("image")
+	defer file.Close()
+
+	imagePath := handler.Filename
+
+	bucket := "futurego-29b1b.appspot.com"
+	wc := route.storage.Bucket(bucket).Object(imagePath).NewWriter(route.ctx)
+	_, err = io.Copy(wc, file)
 	if err != nil {
-		//if error, return with error message
-		c.JSON(400, gin.H{"error": err.Error()})
+		fmt.Println(err)
+		return
+
+	}
+	if err := wc.Close(); err != nil {
+		fmt.Println(err)
 		return
 	}
-	//if no error, save image to local disk and save image path to database with random number + image name
-	imageName := "./public/images/" + strconv.FormatUint(uint64(rand.Int63()), 10) + image.Filename
-	err = c.SaveUploadedFile(image, imageName)
+
+	err = CreateImageUrl(imagePath, bucket, route.ctx, route.client)
 	if err != nil {
-		//if error, return with error message
-		c.JSON(400, gin.H{"error": err.Error()})
+		fmt.Println(err)
 		return
 	}
-	//if no error, save image path to database
-	learning.Image = imageName
+	// respondWithJSON
+	//print url image
+	url := "https://storage.cloud.google.com/" + bucket + "/" + imagePath
+	//save with 
+	learning.Image = url
 	//save learning data to database with function SaveLearning from models learning.go
 	_, err = models.SaveLearning(&learning)
 	if err != nil {
@@ -225,4 +275,53 @@ func SearchLearning(c *gin.Context) {
 	}
 	//if no error, return with learning list
 	c.JSON(200, gin.H{"materials": learning})
+}
+// func (route *App) UploadImage(w http.ResponseWriter, r *http.Request) {
+// 	//get image from function learning
+// 	file :
+// 	r.ParseMultipartForm(10 << 20)
+// 	if err != nil {
+// 		// respondWithJSON undefined
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	defer file.Close()
+
+// 	imagePath := handler.Filename
+
+// 	bucket := "futurego-29b1b.appspot.com"
+// 	wc := route.storage.Bucket(bucket).Object(imagePath).NewWriter(route.ctx)
+// 	_, err = io.Copy(wc, file)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+
+// 	}
+// 	if err := wc.Close(); err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+
+// 	err = CreateImageUrl(imagePath, bucket, route.ctx, route.client)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	// respondWithJSON
+// 	//print url image
+// 	url := "https://storage.cloud.google.com/" + bucket + "/" + imagePath
+// 	fmt.Fprintf(w, "Successfully uploaded", url)
+// }
+func CreateImageUrl(imagePath string, bucket string, ctx context.Context, client *firestore.Client) error {
+	// Create a new instance of the Firestore service.
+	db := client.Collection("images")
+	// Create a new image document.
+	_, err := db.Doc(imagePath).Set(ctx, &Image{
+		Url: "https://firebasestorage.googleapis.com/v0/b/" + bucket + "/o/" + imagePath + "?alt=media",
+		Image: imagePath,
+	})
+	if err != nil {
+		return err
+	}
+	return nil
 }
