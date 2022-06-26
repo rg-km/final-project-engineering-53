@@ -1,10 +1,5 @@
-import Sidebar from "../../components/sections/Sidebar";
-import { Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 export default function AdminHome() {
-  return (
-    <Flex>
-      <Sidebar />
-    </Flex>
-  );
+  return <Box w="full" h="800px" bgColor="gray.400" />;
 }

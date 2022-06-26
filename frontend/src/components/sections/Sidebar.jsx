@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import {
   Avatar,
   Button,
+  Box,
   Flex,
   Heading,
   Icon,
@@ -10,7 +11,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 // import { IconType } from "react-icons/lib";
-import { FiHome, FiBookOpen, FiUsers } from "react-icons/fi";
+import { FiHome, FiBookOpen, FiUsers, FiLogOut } from "react-icons/fi";
 
 const SIDEBAR_LINKS = [
   ["Dashboard", FiHome, "/Dashboard"],
@@ -43,7 +44,7 @@ export default function Sidebar() {
         as="nav"
         divider={<StackDivider borderColor="gray.300" />}
         align="left"
-        spacing={8}
+        spacing={6}
         pt={16}
       >
         {SIDEBAR_LINKS.map(([menu, AsIcon, href]) => (
@@ -59,6 +60,18 @@ export default function Sidebar() {
             </Button>
           </NavLink>
         ))}
+
+        <Box mt={12}>
+          <Button
+            w="full"
+            justifyContent="flex-start"
+            leftIcon={<Icon as={FiLogOut} mb={1} />}
+            variant="outline"
+            size="lg"
+          >
+            Logout
+          </Button>
+        </Box>
       </VStack>
     </VStack>
   );
