@@ -130,16 +130,9 @@ Kemudian periksa url [http://localhost:3000](http://localhost:3000) pada browser
 
 ## Anggota Kelompok
 
-#### 👨‍💻 Ilham Mubarok - FE2103788
-
-#### 👨‍💻 Wahyu Widi Widayat - BE2236237
-
-#### 👩‍💻 Nisa Fatimatuz Zahro - FE2239109
-
-#### 👩‍💻 Sity Fadia Al Haya Maswin - FE2211285
-
-#### 👩‍💻 Galuh Berli Oktaviami - BE2287239
-
-<br>
-
-#### 👀 Putri Wahyulian Aningtyas - FE2211350
+- Ilham Mubarok - FE2103788 👨‍💻
+- Wahyu Widi Widayat - BE2236237 👨‍💻
+- Nisa Fatimatuz Zahro - FE2239109 👩‍💻
+- Sity Fadia Al Haya Maswin - FE2211285 👩‍💻
+- Galuh Berli Oktaviami - BE2287239 👩‍💻
+- Putri Wahyulian Aningtyas - FE2211350 👀
