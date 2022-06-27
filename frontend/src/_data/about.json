@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Bara",
+    "position": "Frontend"
+  },
+  {
+    "id": 2,
+    "name": "Wahyu",
+    "position": "Backend"
+  },
+  {
+    "id": 3,
+    "name": "Nisafa",
+    "position": "Frontend"
+  },
+  {
+    "id": 4,
+    "name": "Fadia",
+    "position": "Frontend"
+  },
+  {
+    "id": 5,
+    "name": "Galuh",
+    "position": "Backend"
+  },
+  {
+    "id": 6,
+    "name": "Putri",
+    "position": "Frontend"
+  }
+]

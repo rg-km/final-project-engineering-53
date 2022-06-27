@@ -13,6 +13,7 @@ export default function SubjectCard({
     <Box
       width={cardWidth}
       minH="520px"
+      h="full"
       bgColor="white"
       boxShadow="lg"
       borderRadius={8}
@@ -20,7 +21,8 @@ export default function SubjectCard({
     >
       <VStack w="full" textAlign="left" spacing={6}>
         <Image
-          src={`http://localhost:8080/${thumbnail}`}
+          // src={`http://localhost:8080/${thumbnail}`}
+          src={thumbnail}
           alt="Cover image"
           borderRadius={4}
         />
