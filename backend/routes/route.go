@@ -17,10 +17,10 @@ func SetupRoutes() *gin.Engine {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Authorization"},
+		AllowCredentials: true,
 		MaxAge: 12 * time.Hour,
 	}))
 	public := r.Group("/")
-	public.Static("/public/images", "./public/images")
 	public.GET("/", controllers.HomeList)
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)

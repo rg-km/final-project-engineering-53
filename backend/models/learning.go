@@ -1,7 +1,6 @@
 package models
 
 import (
-	"os"
 	"sort"
 )
 
@@ -60,10 +59,6 @@ func UpdateLearning(id uint, learning *Learning) (*Learning, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = os.Remove(Learning.Image)
-	if err != nil {
-		return nil, err
-	}
 
 	_, err = DB.Exec("UPDATE learning SET header = ?, sub_header = ?, content = ?, image = ? WHERE id = ?", learning.Header, learning.SubHeader, learning.Content, learning.Image, id)
 	return learning, err
@@ -71,10 +66,6 @@ func UpdateLearning(id uint, learning *Learning) (*Learning, error) {
 func DeleteLearning(id uint) error {
 	var learning Learning
 	err := DB.QueryRow("SELECT * FROM learning WHERE id = ?", id).Scan(&learning.ID, &learning.Header, &learning.SubHeader, &learning.Content, &learning.Image)
-	if err != nil {
-		return err
-	}
-	err = os.Remove(learning.Image)
 	if err != nil {
 		return err
 	}
@@ -107,4 +98,10 @@ func SearchLearning(keyword string) ([]Learning, error) {
 	})
 	// Return the learning
 	return learning, nil
+}
+//get image name by id
+func GetImageNameById(id uint) (string) {
+	var image string
+	DB.QueryRow("SELECT image FROM learning WHERE id = ?", id).Scan(&image)
+	return image
 }
