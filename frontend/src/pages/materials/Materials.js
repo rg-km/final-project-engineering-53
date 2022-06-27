@@ -38,7 +38,7 @@ export default function Materials() {
         {
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
             {getMaterials &&
-              getMaterials.map((material) => (
+              getMaterials?.map((material) => (
                 <MaterialCard
                   key={material.id}
                   id={material.id}

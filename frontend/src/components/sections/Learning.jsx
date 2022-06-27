@@ -42,7 +42,7 @@ export default function Learning() {
               {!loading ? (
                 <HStack justify="space-between" py={16} spacing={8}>
                   {materials &&
-                    getMaterials.map((material) => (
+                    getMaterials?.map((material) => (
                       <MaterialCard
                         cardWidth="400px"
                         key={material.id}

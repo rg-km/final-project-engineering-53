@@ -45,7 +45,7 @@ export default function MaterialDetail() {
           <>
             <VStack w="full" textAlign="center" spacing={8}>
               <Image
-                src={`http://localhost:8080/${data.image}`}
+                src={data.image}
                 alt="Cover image"
                 maxW="480px"
                 borderRadius={4}
