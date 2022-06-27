@@ -41,9 +41,9 @@ export default function App() {
       {/* User Layout */}
 
       {/* Admin Layout */}
-      <Route path="/admin" element={<AdminLayout />}>
+      <Route element={<RequireAuth allowedRoles="admin" />}>
         {/* Protected Routes */}
-        <Route element={<RequireAuth allowedRoles="admin" />}>
+        <Route path="/admin" element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/materials" element={<AdminMaterials />} />
         </Route>
