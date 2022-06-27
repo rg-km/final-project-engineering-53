@@ -16,6 +16,7 @@ export default function Navbar() {
   const PATHS = [
     { to: "/", label: "Home" },
     { to: "/materials", label: "Materials" },
+    { to: "/about-us", label: "About Us" },
   ];
 
   return (

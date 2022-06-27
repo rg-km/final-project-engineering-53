@@ -11,6 +11,7 @@ import MaterialDetail from "./pages/materials/MaterialDetail";
 
 import Login from "./pages/user/Login";
 import Register from "./pages/user/Register";
+import AboutUs from "./pages/AboutUs";
 import Profile from "./pages/user/Profile";
 
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -28,6 +29,7 @@ export default function App() {
           <Route index element={<Materials />} />
           <Route path=":id" element={<MaterialDetail />} />
         </Route>
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/profile" element={<Profile />} />
 
         {/* Auth Routes - User */}
