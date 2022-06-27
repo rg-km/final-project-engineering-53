@@ -62,19 +62,6 @@ export default function Register() {
               Register
             </Heading>
             <FormControl isRequired>
-              <FormLabel type="username" textColor="black">
-                Username:
-              </FormLabel>
-              <Input
-                id="username"
-                type="username"
-                aria-label="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-                borderRadius="50"
-                mb="10"
-                color="black"
-              />
               <FormLabel type="email" textColor="black">
                 Email:
               </FormLabel>
@@ -88,6 +75,21 @@ export default function Register() {
                 mb="10"
                 color="black"
               />
+
+              <FormLabel type="username" textColor="black">
+                Username:
+              </FormLabel>
+              <Input
+                id="username"
+                type="username"
+                aria-label="username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                borderRadius="50"
+                mb="10"
+                color="black"
+              />
+
               <FormLabel type="password" textColor="black">
                 Password:
               </FormLabel>

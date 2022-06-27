@@ -21,7 +21,7 @@ export default function Learning() {
 
   return (
     <>
-      <Box as="section">
+      <Box as="section" id="learning-materials">
         <Container maxW="container.xl" height="100vh">
           <Stack
             direction="row"
