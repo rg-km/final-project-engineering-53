@@ -5,18 +5,19 @@ import { UserLayout } from "./components/layouts/UserLayout";
 import { AdminLayout } from "./components/layouts/AdminLayout";
 
 import NotFound from "./pages/404";
-
-import Login from "./pages/user/Login";
-import Register from "./pages/user/Register";
 import Home from "./pages/Home";
 import Materials from "./pages/materials/Materials";
 import MaterialDetail from "./pages/materials/MaterialDetail";
 
+import Login from "./pages/user/Login";
+import Register from "./pages/user/Register";
+import Profile from "./pages/user/Profile";
+
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminRegister from "./pages/admin/AdminRegister";
 import Dashboard from "./pages/admin/Dashboard";
-import Profile from "./pages/user/Profile";
 import AdminHome from "./pages/admin/AdminHome";
+import AdminMaterials from "./pages/admin/Materials";
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
       {/* Admin Layout */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/materials" element={<AdminMaterials />} />
 
         {/* Protected Routes */}
         <Route element={<RequireAuth allowedRoles="admin" />}>
