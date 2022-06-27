@@ -226,3 +226,21 @@ func ShowDiscussion(c *gin.Context){
 // 	//if no error, return with learning
 // 	c.JSON(200, gin.H{"materials": learning})
 // }
+func GetLearningID(c *gin.Context){
+	//get learning id from url
+	id := c.Param("id")
+	//convert id string to uint64 with function ParseUint from strconv package
+	id_uint, err := strconv.ParseUint(id, 10, 64)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//get learning from database with learning id and function GetLearningID from models learning.go
+	learning,err := models.GetLearningById(uint(id_uint))
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//if no error, return with learning
+	c.JSON(200, gin.H{"materials": learning})
+}
