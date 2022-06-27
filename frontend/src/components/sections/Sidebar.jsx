@@ -12,10 +12,11 @@ import {
 } from "@chakra-ui/react";
 // import { IconType } from "react-icons/lib";
 import { FiHome, FiBookOpen, FiUsers, FiLogOut } from "react-icons/fi";
+import { AdminLogout } from "../menu/AdminLogout";
 
 const SIDEBAR_LINKS = [
-  ["Dashboard", FiHome, "/Dashboard"],
-  ["Materials ", FiBookOpen, "/Materials"],
+  ["Dashboard", FiHome, "/admin/dashboard"],
+  ["Materials ", FiBookOpen, "/admin/materials"],
   ["Users", FiUsers, "#"],
 ];
 
@@ -62,15 +63,7 @@ export default function Sidebar() {
         ))}
 
         <Box mt={12}>
-          <Button
-            w="full"
-            justifyContent="flex-start"
-            leftIcon={<Icon as={FiLogOut} mb={1} />}
-            variant="outline"
-            size="lg"
-          >
-            Logout
-          </Button>
+          <AdminLogout leftIcon={<Icon as={FiLogOut} mb={1} />} />
         </Box>
       </VStack>
     </VStack>
