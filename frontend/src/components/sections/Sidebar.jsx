@@ -9,10 +9,12 @@ import {
   StackDivider,
   Text,
   VStack,
+  AvatarBadge,
 } from "@chakra-ui/react";
 // import { IconType } from "react-icons/lib";
 import { FiHome, FiBookOpen, FiUsers, FiLogOut } from "react-icons/fi";
 import { AdminLogout } from "../menu/AdminLogout";
+import useAuth from "../../hooks/useAuth";
 
 const SIDEBAR_LINKS = [
   ["Dashboard", FiHome, "/admin/dashboard"],
@@ -21,6 +23,8 @@ const SIDEBAR_LINKS = [
 ];
 
 export default function Sidebar() {
+  const { auth } = useAuth();
+
   return (
     <VStack
       as="aside"
@@ -31,13 +35,17 @@ export default function Sidebar() {
       borderColor="gray.200"
       p={6}
     >
-      <VStack w="full" spacing={4}>
-        <Avatar size="lg" src="jpg" />
+      <VStack w="full" spacing={6}>
+        <Avatar size="lg" src="jpg">
+          <AvatarBadge boxSize="1em" bg="green.500" />
+        </Avatar>
         <Flex flexDir="column" textAlign="center">
           <Heading as="h3" size="md">
-            Username
+            {auth.username ? auth.username : "Username"}
           </Heading>
-          <Text>Admin</Text>
+          <Text textTransform="capitalize" pt={1}>
+            {auth.role ? auth.role : "Role"}
+          </Text>
         </Flex>
       </VStack>
 
@@ -63,7 +71,13 @@ export default function Sidebar() {
         ))}
 
         <Box mt={12}>
-          <AdminLogout leftIcon={<Icon as={FiLogOut} mb={1} />} />
+          {auth.role ? (
+            <AdminLogout leftIcon={<Icon as={FiLogOut} mb={1} />} />
+          ) : (
+            <Button w="full" colorScheme="teal" as={NavLink} to="/admin/login">
+              Login as Admin
+            </Button>
+          )}
         </Box>
       </VStack>
     </VStack>

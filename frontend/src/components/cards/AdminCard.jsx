@@ -6,8 +6,8 @@ export const AdminCard = ({ children, title }) => {
     <>
       <Heading mb={6}>{title}</Heading>
       <Box
-        w="640px"
-        minH="354px"
+        w="840px"
+        minH="640px"
         h="fit-content"
         border="1px solid"
         borderColor="gray.200"
