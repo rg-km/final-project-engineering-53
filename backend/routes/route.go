@@ -21,7 +21,6 @@ func SetupRoutes() *gin.Engine {
 		MaxAge: 12 * time.Hour,
 	}))
 	public := r.Group("/")
-	public.Static("/public/images", "./public/images")
 	public.GET("/", controllers.HomeList)
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)
