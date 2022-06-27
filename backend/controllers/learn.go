@@ -28,7 +28,7 @@ type Image struct {
 }
 func (r *App) Init(){
 	r.ctx = context.Background()
-	sa := option.WithCredentialsFile("./key/futurego.json")
+	sa := option.WithCredentialsFile("futurego.json")
 	app, err := firebase.NewApp(r.ctx, nil, sa)
 	if err != nil {
 		log.Fatalf("error initializing app: %v\n", err)
@@ -38,7 +38,7 @@ func (r *App) Init(){
 		log.Fatalf("error initializing firestore: %v\n", err)
 	}
 	//admin
-	r.storage, err = cloud.NewClient(r.ctx, option.WithCredentialsFile("./key/futurego.json"))
+	r.storage, err = cloud.NewClient(r.ctx, option.WithCredentialsFile("futurego.json"))
 	if err != nil {
 		log.Fatalf("error initializing storage: %v\n", err)
 	}
