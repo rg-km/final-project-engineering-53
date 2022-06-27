@@ -24,7 +24,7 @@ export default function Navbar() {
         <Container maxW="container.xl" height="100px">
           <HStack as="nav" height="full" fontWeight="normal">
             <NavLink to="/">
-              <Image src={Logo} boxSize="50px" alt="App Logo" />
+              <Image src={Logo} width="150px" height="75"  alt="App Logo" />
             </NavLink>
 
             <Spacer />
