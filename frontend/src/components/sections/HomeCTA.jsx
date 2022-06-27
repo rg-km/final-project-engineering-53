@@ -1,13 +1,16 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { Box, Container, Heading, VStack } from "@chakra-ui/react";
 import BtnPrimary from "../buttons/BtnPrimary";
-import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 export default function HomeCTA() {
+  const { auth } = useAuth();
+
   return (
     <>
       <Box
         as="section"
+        id="register-now"
         w="full"
         minH="600px"
         display="flex"
@@ -29,13 +32,23 @@ export default function HomeCTA() {
               Ready to know your Future Map?
             </Heading>
 
-            <Link to="/register">
-              <BtnPrimary
-                title="Register Now"
-                btnColor="white"
-                textColor="#2477FF"
-              />
-            </Link>
+            {auth?.username ? (
+              <Link to="/materials">
+                <BtnPrimary
+                  title="Go To Materials"
+                  btnColor="white"
+                  textColor="#2477FF"
+                />
+              </Link>
+            ) : (
+              <Link to="/register">
+                <BtnPrimary
+                  title="Register Now"
+                  btnColor="white"
+                  textColor="#2477FF"
+                />
+              </Link>
+            )}
           </VStack>
         </Container>
       </Box>

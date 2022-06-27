@@ -26,9 +26,11 @@ export default function UserNavbar() {
       <Box as="header" w="full" bgColor="#f8f7fc">
         <Container maxW="container.xl" height="100px">
           <HStack as="nav" height="full" fontWeight="normal">
-            <NavLink to="/">
-              <Image src={Logo} boxSize="50px" alt="App Logo" />
-            </NavLink>
+            <Box>
+              <NavLink to="/">
+                <Image src={Logo} h="75px" alt="App Logo" />
+              </NavLink>
+            </Box>
 
             <Spacer />
 

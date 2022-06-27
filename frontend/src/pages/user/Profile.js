@@ -48,7 +48,7 @@ export default function Profile() {
               <Avatar
                 size="2xl"
                 name={user.data.username}
-                src="https://bit.ly/naruto-sage"
+                // src="https://bit.ly/naruto-sage"
               />
               <Heading as="h2" fontSize="3xl" pt={6}>
                 {user.data.username}

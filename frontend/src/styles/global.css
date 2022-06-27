@@ -6,6 +6,7 @@
   font-family: "Josefin Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
