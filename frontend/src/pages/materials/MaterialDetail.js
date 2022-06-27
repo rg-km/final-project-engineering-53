@@ -4,15 +4,21 @@ import {
   Button,
   Container,
   Heading,
+  HStack,
   Image,
+  Spacer,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { MdArrowBack } from "react-icons/md";
+import { BtnLikes } from "../../components/buttons/BtnLikes";
 import useFetch from "../../hooks/useFetch";
+import useAuth from "../../hooks/useAuth";
 
 export default function MaterialDetail() {
+  const { auth } = useAuth();
+
   const { id } = useParams();
   const { data: materials, loading } = useFetch(
     "http://localhost:8080/materials/" + id
@@ -23,11 +29,15 @@ export default function MaterialDetail() {
   return (
     <Container maxW="container.xl" minH="90vh">
       <Stack as="section" direction="column" spacing={16} my={16}>
-        <Box>
+        <HStack>
           <Button as={NavLink} to="/materials" leftIcon={<MdArrowBack />}>
             Back To Materials
           </Button>
-        </Box>
+
+          <Spacer />
+
+          {auth?.username ? <BtnLikes /> : <BtnLikes disabled={true} />}
+        </HStack>
 
         {loading && <Heading as="h1">Loading...</Heading>}
 
