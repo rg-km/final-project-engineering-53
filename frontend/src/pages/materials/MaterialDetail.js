@@ -4,13 +4,16 @@ import {
   Button,
   Container,
   Heading,
+  HStack,
   Image,
+  Spacer,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { MdArrowBack } from "react-icons/md";
 import useFetch from "../../hooks/useFetch";
+import { BtnLikes } from "../../components/buttons/BtnLikes";
 
 export default function MaterialDetail() {
   const { id } = useParams();
@@ -23,11 +26,15 @@ export default function MaterialDetail() {
   return (
     <Container maxW="container.xl" minH="90vh">
       <Stack as="section" direction="column" spacing={16} my={16}>
-        <Box>
+        <HStack>
           <Button as={NavLink} to="/materials" leftIcon={<MdArrowBack />}>
             Back To Materials
           </Button>
-        </Box>
+
+          <Spacer />
+
+          <BtnLikes />
+        </HStack>
 
         {loading && <Heading as="h1">Loading...</Heading>}
 
