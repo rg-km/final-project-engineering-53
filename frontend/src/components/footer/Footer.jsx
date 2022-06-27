@@ -6,19 +6,23 @@ import {
   Spacer,
   Stack,
   Text,
+  Image,
   Divider,
 } from "@chakra-ui/react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import Logo from "../../assets/logo192.png";
 
 export default function Footer() {
   return (
     <>
-      <Box as="footer" width="full" bgColor="#f8f7fc">
+      <Box width="100%">
         <Container maxW="container.xl">
           <Divider borderColor="gray.300" />
-
-          <Stack direction="row" minH="280px" height="full" py={16}>
+          <Stack direction="row" height="full" marginTop={10} marginBottom={10}>
             <Box width="50%">
+              <Box boxSize="200px" marginBottom={10}>
+                <Image src={Logo} />
+              </Box>
               <Heading fontSize="xl">Future Map</Heading>
               <Stack direction="row" marginTop={5}>
                 <Button label={"Instagram"} href="#">
@@ -32,8 +36,10 @@ export default function Footer() {
             <Spacer />
             <Box width="25%">
               <Text fontSize="xl">About Us</Text>
-              <Text fontSize="xl">Office</Text>
-              <Text fontSize="sm" marginTop={5}>
+              <Text fontSize="xl" marginTop={10}>
+                Office
+              </Text>
+              <Text fontSize="sm" marginTop={2}>
                 Final Project
               </Text>
               <Text fontSize="sm">Ruang Guru CAMP</Text>
@@ -42,18 +48,18 @@ export default function Footer() {
             </Box>
             <Box width="25%">
               <Text fontSize="xl">Contact Person</Text>
-              <Text fontSize="sm" marginTop={5}>
+              <Text fontSize="sm" marginTop={2}>
                 +61 85123456780
               </Text>
               <Text fontSize="sm">futuremap@gmail.com</Text>
-              <Text fontSize="xl" marginTop={5}>
+              <Text fontSize="xl" marginTop={10}>
                 FAQ
               </Text>
             </Box>
           </Stack>
         </Container>
-        <Stack height={16} bgColor="#2477FF" justify="center">
-          <Text align="center" color="white">
+        <Stack bgColor="#2477FF" height={12}>
+          <Text fontSize="sm" align="center" marginTop={3} color="white">
             Copyright Future Map 2022
           </Text>
         </Stack>

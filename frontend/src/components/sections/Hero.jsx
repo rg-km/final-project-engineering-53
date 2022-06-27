@@ -1,4 +1,13 @@
-import { Box, Button, Container, Heading, Image, Stack, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import HeroImg from "../../assets/img/hero-img.png";
 import dataDummy from "../../_data/hero.json";
 
@@ -19,7 +28,7 @@ export default function Hero() {
               </Text>
               <Button
                 as="a"
-                href="#"
+                href="#learning-materials"
                 width="240px"
                 height="60px"
                 fontSize="2xl"
@@ -50,7 +59,14 @@ export default function Hero() {
           bgRepeat="no-repeat"
           bgColor="black"
         >
-          <VStack height="full" maxW="container.xl" justify="center" margin="0 auto" textAlign="center" spacing={8}>
+          <VStack
+            height="full"
+            maxW="container.xl"
+            justify="center"
+            margin="0 auto"
+            textAlign="center"
+            spacing={8}
+          >
             <Heading as="h2" fontSize="5xl">
               {data.heading_2}
             </Heading>
@@ -61,7 +77,7 @@ export default function Hero() {
 
             <Button
               as="a"
-              href="#"
+              href="#register-now"
               width="240px"
               height="60px"
               fontSize="2xl"

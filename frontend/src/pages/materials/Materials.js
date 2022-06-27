@@ -1,9 +1,21 @@
-import { Box, Container, Grid, Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Grid,
+  Heading,
+  Input,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import useFetch from "../../hooks/useFetch";
 import MaterialCard from "../../components/cards/MaterialCard";
+import Search from "../../components/Search";
 
 export default function Materials() {
-  const { data: materials, loading } = useFetch("http://localhost:8000/materials");
+  const { data: materials, loading } = useFetch(
+    "http://localhost:8080/materials"
+  );
+  const getMaterials = materials?.materials; // get response from backend
 
   return (
     <Container maxW="container.xl">
@@ -14,6 +26,10 @@ export default function Materials() {
         <Text fontSize="2xl" opacity={0.9}>
           Search and select the major journey you want to know!
         </Text>
+
+        <Search>
+          <Input type="text" borderRadius="50" placeholder="Search material" />
+        </Search>
       </VStack>
 
       {loading && <Text>Loading...</Text>}
@@ -21,15 +37,15 @@ export default function Materials() {
       <Box as="section" minH="100vh" mb={24}>
         {
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
-            {materials &&
-              materials.map((material) => (
+            {getMaterials &&
+              getMaterials.map((material) => (
                 <MaterialCard
                   key={material.id}
                   id={material.id}
-                  thumbnail={material.thumbnail}
-                  title={material.title}
-                  title_eng={material.title_eng}
-                  description={material.description}
+                  title={material.header}
+                  thumbnail={material.image}
+                  description={material.sub_header}
+                  content={material.content}
                 />
               ))}
           </Grid>

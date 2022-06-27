@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../api/axios";
+import axios from "../../api/axiosGO";
 import {
   Box,
   Button,
@@ -12,7 +12,7 @@ import {
   Link as ChakraLink,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import AuthLayout from "../components/layouts/AuthLayout";
+import AuthLayout from "../../components/layouts/AuthLayout";
 
 const REGISTER_URL = "/register";
 
@@ -29,7 +29,7 @@ export default function Register() {
         JSON.stringify({ email, password, username }),
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          withCredentials: false,
         }
       );
       console.log(response.data);
@@ -47,14 +47,14 @@ export default function Register() {
     <AuthLayout>
       <Box
         minW="720px"
-        minH="656px"
+        minH="600px"
         h="fit-content"
         backgroundColor="white"
         alignItems="center"
         boxShadow="lg"
         borderRadius={16}
         p={16}
-        mt={-4}
+        mt={0}
       >
         <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
@@ -62,19 +62,6 @@ export default function Register() {
               Register
             </Heading>
             <FormControl isRequired>
-              <FormLabel type="username" textColor="black">
-                Username:
-              </FormLabel>
-              <Input
-                id="username"
-                type="username"
-                aria-label="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-                borderRadius="50"
-                mb="10"
-                color="black"
-              />
               <FormLabel type="email" textColor="black">
                 Email:
               </FormLabel>
@@ -88,6 +75,21 @@ export default function Register() {
                 mb="10"
                 color="black"
               />
+
+              <FormLabel type="username" textColor="black">
+                Username:
+              </FormLabel>
+              <Input
+                id="username"
+                type="username"
+                aria-label="username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                borderRadius="50"
+                mb="10"
+                color="black"
+              />
+
               <FormLabel type="password" textColor="black">
                 Password:
               </FormLabel>

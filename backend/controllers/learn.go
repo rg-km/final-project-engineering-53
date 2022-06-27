@@ -313,19 +313,6 @@ func ShowDiscussion(c *gin.Context){
 	c.JSON(200, gin.H{"discussion": discussion})
 }
 
-// func SearchLearning(c *gin.Context){
-// 	//get search from url
-// 	search := c.PostForm("search")
-// 	//get learning from database with search and function SearchLearning from models learning.go
-// 	learning,err := models.SearchLearning(search)
-// 	if err != nil {
-// 		c.JSON(400, gin.H{"error": err.Error()})
-// 		return
-// 	}
-// 	//if no error, return with learning
-// 	c.JSON(200, gin.H{"materials": learning})
-// }
-
 func CreateImageUrl(imagePath string, bucket string, ctx context.Context, client *firestore.Client) error {
 	// Create a new instance of the Firestore service.
 	db := client.Collection("images")
@@ -339,19 +326,21 @@ func CreateImageUrl(imagePath string, bucket string, ctx context.Context, client
 	}
 	return nil
 }
-//delete image from firebase storage
-func DeleteImage(c *gin.Context){
-	//get image path from url
-	var route App
-	route.Init()
-	imagePath := c.Param("imagePath")
-	//delete image from firebase storage
-	ctx := context.Background()
-	err := route.storage.Bucket("futurego-29b1b.appspot.com").Object(imagePath).Delete(ctx)
+func GetLearningID(c *gin.Context){
+	//get learning id from url
+	id := c.Param("id")
+	//convert id string to uint64 with function ParseUint from strconv package
+	id_uint, err := strconv.ParseUint(id, 10, 64)
 	if err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
-	//if no error, return with message success
-	c.JSON(200, gin.H{"message": "success"})
+	//get learning from database with learning id and function GetLearningID from models learning.go
+	learning,err := models.GetLearningById(uint(id_uint))
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//if no error, return with learning
+	c.JSON(200, gin.H{"materials": learning})
 }
