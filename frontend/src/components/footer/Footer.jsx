@@ -1,5 +1,6 @@
-import { Box, Container, Heading, Button, Spacer, Stack, Text } from "@chakra-ui/react";
+import { Box, Container, Heading, Button, Spacer, Stack, Text, Image } from "@chakra-ui/react";
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
+import Logo from "../../assets/logo192.png";
 
 export default function Footer() {
     return (
@@ -8,6 +9,9 @@ export default function Footer() {
                 <Container maxW="container.xl">
                     <Stack direction="row" height="full" marginTop={10} marginBottom={10}>
                     <Box width="50%">
+                        <Box boxSize="300px" marginBottom={10}>
+                            <Image src={Logo} width="300px" height="150px"></Image>
+                        </Box>
                         <Heading fontSize="xl">
                             Future Map
                         </Heading>
@@ -25,10 +29,10 @@ export default function Footer() {
                             <Text fontSize="xl">
                                 About Us
                             </Text>
-                            <Text fontSize="xl">
+                            <Text fontSize="xl" marginTop={10}>
                                 Office
                             </Text>
-                            <Text fontSize="sm" marginTop={5}>
+                            <Text fontSize="sm" marginTop={2}>
                                 Final Project
                             </Text>
                             <Text fontSize="sm">
@@ -45,13 +49,13 @@ export default function Footer() {
                             <Text fontSize="xl">
                                 Contact Person
                             </Text>
-                            <Text fontSize="sm" marginTop={5}>
+                            <Text fontSize="sm" marginTop={2}>
                                 +61 85123456780
                             </Text>
                             <Text fontSize="sm">
                                 futuremap@gmail.com
                             </Text>
-                            <Text fontSize="xl" marginTop={5}>
+                            <Text fontSize="xl" marginTop={10}>
                                 FAQ
                             </Text>
                     </Box>
