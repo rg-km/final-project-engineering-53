@@ -47,14 +47,14 @@ export default function Register() {
     <AuthLayout>
       <Box
         minW="720px"
-        minH="656px"
+        minH="600px"
         h="fit-content"
         backgroundColor="white"
         alignItems="center"
         boxShadow="lg"
         borderRadius={16}
         p={16}
-        mt={-4}
+        mt={0}
       >
         <form onSubmit={handleSubmit}>
           <Stack spacing={3}>

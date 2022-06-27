@@ -29,10 +29,10 @@ export default function Footer() {
                             <Text fontSize="xl">
                                 About Us
                             </Text>
-                            <Text fontSize="xl">
+                            <Text fontSize="xl" marginTop={10}>
                                 Office
                             </Text>
-                            <Text fontSize="sm" marginTop={5}>
+                            <Text fontSize="sm" marginTop={2}>
                                 Final Project
                             </Text>
                             <Text fontSize="sm">
@@ -49,13 +49,13 @@ export default function Footer() {
                             <Text fontSize="xl">
                                 Contact Person
                             </Text>
-                            <Text fontSize="sm" marginTop={5}>
+                            <Text fontSize="sm" marginTop={2}>
                                 +61 85123456780
                             </Text>
                             <Text fontSize="sm">
                                 futuremap@gmail.com
                             </Text>
-                            <Text fontSize="xl" marginTop={5}>
+                            <Text fontSize="xl" marginTop={10}>
                                 FAQ
                             </Text>
                     </Box>
