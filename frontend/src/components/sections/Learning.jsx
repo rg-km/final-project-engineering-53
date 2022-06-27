@@ -12,8 +12,12 @@ import useFetch from "../../hooks/useFetch";
 
 export default function Learning() {
   const { data: materials, loading } = useFetch(
-    "http://localhost:8000/materials"
+    "http://localhost:8080/materials"
   );
+
+  const getMaterials = materials?.materials; // get response from backend
+
+  console.log(getMaterials);
 
   return (
     <>
@@ -40,15 +44,15 @@ export default function Learning() {
               {!loading ? (
                 <HStack justify="space-between" py={16} spacing={8}>
                   {materials &&
-                    materials.map((data) => (
+                    getMaterials.map((material) => (
                       <MaterialCard
                         cardWidth="400px"
-                        key={data.id}
-                        id={data.id}
-                        thumbnail={data.thumbnail}
-                        title={data.title}
-                        title_eng={data.title_eng}
-                        description={data.description}
+                        key={material.id}
+                        id={material.id}
+                        title={material.header}
+                        thumbnail={material.image}
+                        description={material.sub_header}
+                        content={material.content}
                       />
                     ))}
                 </HStack>

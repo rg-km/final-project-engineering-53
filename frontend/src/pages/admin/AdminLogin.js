@@ -1,18 +1,18 @@
 import { useState } from "react";
 import axios from "../../api/axiosGO";
-
 import {
+  Box,
   Button,
   Center,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Link as ChakraLink,
   Text,
 } from "@chakra-ui/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import BaseLayout from "../../components/layouts/BaseLayout";
-import { AdminCard } from "../../components/cards/AdminCard";
 
 const LOGIN_URL = "/login";
 
@@ -57,7 +57,17 @@ export default function AdminLogin() {
 
   return (
     <BaseLayout bgColor="gray.300">
-      <AdminCard title="Admin Login">
+      <Heading mb={6}>Login Admin</Heading>
+      <Box
+        w="640px"
+        h="fit-content"
+        border="1px solid"
+        borderColor="gray.200"
+        bgColor="#f8f7fc"
+        borderRadius={8}
+        boxShadow="lg"
+        p={12}
+      >
         <form onSubmit={handleSubmit}>
           <FormControl>
             <FormLabel htmlFor="email">Email</FormLabel>
@@ -87,7 +97,7 @@ export default function AdminLogin() {
             </Center>
           </FormControl>
         </form>
-      </AdminCard>
+      </Box>
 
       <Text mt={6}>
         <ChakraLink

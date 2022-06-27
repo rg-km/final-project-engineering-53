@@ -4,10 +4,13 @@ import axios from "../../api/axiosGO";
 import { Heading, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import BaseLayout from "../../components/layouts/BaseLayout";
 import { AdminCard } from "../../components/cards/AdminCard";
+import useAuth from "../../hooks/useAuth";
 
 const API_URL = "/admin/user";
 
 export default function Dashboard() {
+  const { setAuth } = useAuth();
+
   const [user, setUser] = useState({});
   const [success, setSuccess] = useState(false);
 
@@ -21,8 +24,11 @@ export default function Dashboard() {
       setSuccess(true);
       setUser(response?.data);
 
+      const username = response?.data?.data?.username;
       const email = response?.data?.data?.email;
-      localStorage.setItem("email", email);
+      const role = response?.data?.data?.role;
+
+      setAuth({ username, email, role });
       //
     } catch (error) {
       alert("Unauthorized. Please login as admin!");

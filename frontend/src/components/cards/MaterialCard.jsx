@@ -6,7 +6,6 @@ export default function SubjectCard({
   id,
   thumbnail,
   title,
-  title_eng,
   description,
   cardWidth,
 }) {
@@ -22,17 +21,14 @@ export default function SubjectCard({
       >
         <VStack w="full" textAlign="left" spacing={6}>
           <Image
-            src={thumbnail}
-            alt={`Image of ${title_eng}`}
+            src={`http://localhost:8080/${thumbnail}`}
+            alt="Cover image"
             borderRadius={4}
           />
 
           <Box width="full">
-            <Heading as="h5" fontSize="2xl">
+            <Heading as="h5" fontSize="2xl" textTransform="capitalize">
               {title}
-            </Heading>
-            <Heading as="h5" fontSize="2xl" pt={2}>
-              ({title_eng})
             </Heading>
           </Box>
 
