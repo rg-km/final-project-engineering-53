@@ -1,17 +1,33 @@
 # Final Project Kelompok 53
 
+![preview](preview.png)
+
+---
+
+## Table of Contents
+
 - ⚙️ [Backend](#backend)
-  - 🛠 [Development Backend](#development-backend)
-  - 📲 [Contoh Response](#contoh-response)
+  - [Teknologi Backend](#teknologi-backend)
+  - [Development Backend](#development-backend)
+  - [Contoh Response](#contoh-response)
 - 🖼 [Frontend](#frontend)
-  - 📦 [Package Penting](#package-penting)
-  - 🛠 [Development Frontend](#development-frontend)
+  - [Teknologi Frontend](#teknologi-frontend)
+  - [Package Penting](#package-penting)
+  - [Development Frontend](#development-frontend)
+- 😎 [Anggota Kelompok](#anggota-kelompok)
 
 ---
 
 ## Backend
 
-Buka terminal favorit kalian dan jalankan perintah-perintah berikut ini.
+Buka terminal favorit kalian dan jalankan perintah-perintah berikut ini. Selain itu juga disediakan _build version_ berupa file exe.
+
+### 📚 Teknologi Backend
+
+- Golang
+- Gin Gonic
+- JWT-GO
+- Cloud Firestore (Firebase)
 
 ### 🛠 Development Backend
 
@@ -63,6 +79,15 @@ Contoh response register dan login untuk User, sama dengan Admin.
 
 Berikut ini adalah panduan instalasi hingga cara menjalankan local development pada Project Frontend.
 
+### 📚 Teknologi Frontend
+
+- React-js
+- Axios
+- Chakra UI
+- Emotion
+- Zustand
+- json-server & json-server-auth (development)
+
 ### 📦 Package Penting
 
 Ada 3 package/library penting yang digunakan disini, yaitu:
@@ -100,3 +125,21 @@ json-server _data/db.json -m ./node_modules/json-server-auth --port 8000
 ```
 
 Kemudian periksa url [http://localhost:3000](http://localhost:3000) pada browser untuk melihat hasilnya.
+
+---
+
+## Anggota Kelompok
+
+#### 👨‍💻 Ilham Mubarok - FE2103788
+
+#### 👨‍💻 Wahyu Widi Widayat - BE2236237
+
+#### 👩‍💻 Nisa Fatimatuz Zahro - FE2239109
+
+#### 👩‍💻 Sity Fadia Al Haya Maswin - FE2211285
+
+#### 👩‍💻 Galuh Berli Oktaviami - BE2287239
+
+<br>
+
+#### 👀 Putri Wahyulian Aningtyas - FE2211350
