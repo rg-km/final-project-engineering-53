@@ -25,12 +25,13 @@ func SetupRoutes() *gin.Engine {
 	public.GET("/", controllers.HomeList)
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)
+	//delete image
+	public.DELETE("/delete/:imagePath",controllers.DeleteImage)
 	public.POST("/admin/register", controllers.RegisterAdmin)
 	public.POST("/reset/password", controllers.ResetPassword)
 	public.GET("/materials", controllers.LearningList)
 	public.GET("/materials/:id", controllers.GetLearningById)
 	public.GET("/materials/:id/discussion", controllers.ShowDiscussion)
-	public.GET("/search/:keyword", controllers.SearchLearning)
 	//=============================Middlewares for Client======================================================
 	client := r.Group("/client")
 	client.Use(middlewares.JwtAuthMiddleware())
