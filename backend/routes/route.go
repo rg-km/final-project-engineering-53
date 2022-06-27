@@ -24,7 +24,6 @@ func SetupRoutes() *gin.Engine {
 	public.GET("/", controllers.HomeList)
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)
-	//delete image
 	public.POST("/admin/register", controllers.RegisterAdmin)
 	public.POST("/reset/password", controllers.ResetPassword)
 	public.GET("/materials", controllers.LearningList)
