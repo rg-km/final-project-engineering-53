@@ -10,47 +10,45 @@ export default function SubjectCard({
   cardWidth,
 }) {
   return (
-    <>
-      <Box
-        width={cardWidth}
-        minH="520px"
-        bgColor="white"
-        boxShadow="lg"
-        borderRadius={8}
-        p={8}
-      >
-        <VStack w="full" textAlign="left" spacing={6}>
-          <Image
-            src={`http://localhost:8080/${thumbnail}`}
-            alt="Cover image"
-            borderRadius={4}
-          />
+    <Box
+      width={cardWidth}
+      minH="520px"
+      bgColor="white"
+      boxShadow="lg"
+      borderRadius={8}
+      p={8}
+    >
+      <VStack w="full" textAlign="left" spacing={6}>
+        <Image
+          src={`http://localhost:8080/${thumbnail}`}
+          alt="Cover image"
+          borderRadius={4}
+        />
 
-          <Box width="full">
-            <Heading as="h5" fontSize="2xl" textTransform="capitalize">
-              {title}
-            </Heading>
-          </Box>
+        <Box width="full">
+          <Heading as="h5" fontSize="2xl" textTransform="capitalize">
+            {title}
+          </Heading>
+        </Box>
 
-          <Box height="92px" overflow="hidden">
-            <Text textOverflow="ellipsis">{description}</Text>
-          </Box>
+        <Box height="92px" overflow="hidden">
+          <Text textOverflow="ellipsis">{description}</Text>
+        </Box>
 
-          <Box pt={4}>
-            <Link to={`/materials/${id}`}>
-              <Button
-                id={id}
-                size="lg"
-                colorScheme="blue"
-                color="#2477FF"
-                variant="ghost"
-              >
-                Learn More
-              </Button>
-            </Link>
-          </Box>
-        </VStack>
-      </Box>
-    </>
+        <Box pt={4}>
+          <Link to={`/materials/${id}`}>
+            <Button
+              id={id}
+              size="lg"
+              colorScheme="blue"
+              color="#2477FF"
+              variant="ghost"
+            >
+              Learn More
+            </Button>
+          </Link>
+        </Box>
+      </VStack>
+    </Box>
   );
 }

@@ -17,8 +17,6 @@ export default function Learning() {
 
   const getMaterials = materials?.materials; // get response from backend
 
-  console.log(getMaterials);
-
   return (
     <>
       <Box as="section" id="learning-materials">
