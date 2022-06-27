@@ -4,13 +4,12 @@ import MaterialCard from "../../components/cards/MaterialCard";
 
 export default function Materials() {
   const { data: materials, loading } = useFetch(
-    "http://localhost:8000/materials"
-  ); // from json-server
-  // const { data: materials, loading } = useFetch(
-  //   "http://localhost:8080/materials"
-  // ); // from go backend
+    "http://localhost:8080/materials"
+  );
 
-  // console.log(materials);
+  const getMaterials = materials?.materials; // get response from backend
+
+  console.log(getMaterials);
 
   return (
     <Container maxW="container.xl">
@@ -29,14 +28,14 @@ export default function Materials() {
         {
           <Grid templateColumns="repeat(3, 1fr)" gap={12}>
             {materials &&
-              materials.map((material) => (
+              getMaterials.map((material) => (
                 <MaterialCard
                   key={material.id}
                   id={material.id}
-                  thumbnail={material.thumbnail}
-                  title={material.title}
-                  title_eng={material.title_eng}
-                  description={material.description}
+                  title={material.header}
+                  thumbnail={material.image}
+                  description={material.sub_header}
+                  content={material.content}
                 />
               ))}
           </Grid>
@@ -45,8 +44,3 @@ export default function Materials() {
     </Container>
   );
 }
-
-// title={material.header}
-// description={material.sub_header}
-// title_eng={material.header}
-// thumbnail={material.image}
