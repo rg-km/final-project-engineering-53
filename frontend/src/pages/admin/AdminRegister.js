@@ -58,23 +58,23 @@ export default function AdminRegister() {
       >
         <form onSubmit={handleSubmit}>
           <FormControl isRequired>
-            <FormLabel htmlFor="username">Username</FormLabel>
-            <Input
-              id="username"
-              type="text"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-              borderColor="gray.400"
-            />
-
-            <FormLabel htmlFor="email" mt={6}>
-              Email
-            </FormLabel>
+            <FormLabel htmlFor="email">Email</FormLabel>
             <Input
               id="email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              borderColor="gray.400"
+            />
+
+            <FormLabel htmlFor="username" mt={6}>
+              Username
+            </FormLabel>
+            <Input
+              id="username"
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
               borderColor="gray.400"
             />
 

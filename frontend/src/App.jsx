@@ -15,8 +15,7 @@ import Profile from "./pages/user/Profile";
 
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminRegister from "./pages/admin/AdminRegister";
-import Dashboard from "./pages/admin/Dashboard";
-import AdminHome from "./pages/admin/AdminHome";
+import AdminDashboard from "./pages/admin/Dashboard";
 import AdminMaterials from "./pages/admin/Materials";
 
 export default function App() {
@@ -43,12 +42,10 @@ export default function App() {
 
       {/* Admin Layout */}
       <Route path="/admin" element={<AdminLayout />}>
-        <Route path="/admin/home" element={<AdminHome />} />
-        <Route path="/admin/materials" element={<AdminMaterials />} />
-
         {/* Protected Routes */}
         <Route element={<RequireAuth allowedRoles="admin" />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/materials" element={<AdminMaterials />} />
         </Route>
       </Route>
       {/* Admin Layout */}

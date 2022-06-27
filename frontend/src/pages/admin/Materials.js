@@ -36,6 +36,11 @@ export default function AdminMaterials() {
       await axios.post(API_URL, SetFormData, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      alert("Success!");
+      // clear form after submit?
+      setForm({ header: "", sub_header: "", image: "", content: "" });
+      //
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +76,7 @@ export default function AdminMaterials() {
               id="title"
               type="text"
               onChange={handleTitle}
+              value={form.header}
               borderColor="gray.400"
             />
 
@@ -81,6 +87,7 @@ export default function AdminMaterials() {
               id="description"
               type="text"
               onChange={handleDescription}
+              value={form.sub_header}
               borderColor="gray.400"
             />
 
@@ -103,6 +110,7 @@ export default function AdminMaterials() {
               id="content"
               type="text"
               onChange={handleContent}
+              value={form.content}
               borderColor="gray.400"
             />
 
