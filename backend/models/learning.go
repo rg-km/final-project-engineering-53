@@ -1,7 +1,6 @@
 package models
 
 import (
-	"os"
 	"sort"
 )
 
@@ -67,10 +66,6 @@ func UpdateLearning(id uint, learning *Learning) (*Learning, error) {
 func DeleteLearning(id uint) error {
 	var learning Learning
 	err := DB.QueryRow("SELECT * FROM learning WHERE id = ?", id).Scan(&learning.ID, &learning.Header, &learning.SubHeader, &learning.Content, &learning.Image)
-	if err != nil {
-		return err
-	}
-	err = os.Remove(learning.Image)
 	if err != nil {
 		return err
 	}

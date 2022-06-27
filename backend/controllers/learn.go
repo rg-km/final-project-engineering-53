@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"futuremap/utils/token"
 	"github.com/gin-gonic/gin"
-
+	"strings"
 	"context"
 	"io"
 	"log"
@@ -59,8 +59,9 @@ func Learning(c *gin.Context) {
 		return
 	}
 	defer file.Close()
-	//if no error, save image to local disk and save image path to database with random number + image name
-	imagePath := strconv.FormatUint(uint64(rand.Int63()), 10) + handler.Filename
+	image_name := handler.Filename
+	image_name = strings.Replace(image_name, " ", "", -1)
+	imagePath := strconv.FormatUint(uint64(rand.Int63()), 10) + image_name
 	ctx := context.Background()
 	wc := route.storage.Bucket("futurego-29b1b.appspot.com").Object(imagePath).NewWriter(ctx)
 	io.Copy(wc, file)
@@ -69,15 +70,12 @@ func Learning(c *gin.Context) {
 		return
 	}
 	wc.Close()
-	//create image url
 	err = CreateImageUrl(imagePath, "futurego-29b1b.appspot.com", ctx, route.client)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	//url
-	url := "https://storage.googleapis.com/" + "futurego-29b1b.appspot.com" + "/" + imagePath
-	learning.Image = url
+	learning.Image = imagePath
 	//save learning data to database with function SaveLearning from models learning.go
 	_, err = models.SaveLearning(&learning)
 	if err != nil {
@@ -97,6 +95,10 @@ func LearningList(c *gin.Context) {
 		//if error, return with error message
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
+	}
+	//replace image url with image url
+	for i := 0; i < len(learning); i++ {
+		learning[i].Image = "https://storage.googleapis.com/futurego-29b1b.appspot.com/" + learning[i].Image
 	}
 	//if no error, return with learning list
 	c.JSON(200, gin.H{"materials": learning})
@@ -140,6 +142,8 @@ func GetLearningById(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
+	//replace image url with image url
+	learning.Image = "https://storage.googleapis.com/futurego-29b1b.appspot.com/" + learning.Image
 	//if no error, return with learning
 	c.JSON(200, gin.H{"materials": learning})
 }
@@ -166,10 +170,17 @@ func UpdateLearning(c *gin.Context) {
 	route.Init()
 	id := c.Param("id")
 	id_uint, err := strconv.ParseUint(id, 10, 64)
-	//get image name with function GetImageNameById from models learning.go
-	imagePatha := models.GetImageNameById(uint(id_uint))
-	cx := context.Background()
-	err = route.storage.Bucket("futurego-29b1b.appspot.com").Object(imagePath).Delete(cx)
+	//get old learning data from database with id and function GetLearningById from models learning.go
+	old_learning, err := models.GetLearningById(uint(id_uint))
+	if err != nil {
+		//if error, return with error message
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	old_image := old_learning.Image
+	//delete image from firebase storage
+	ctx := context.Background()
+	err = route.storage.Bucket("futurego-29b1b.appspot.com").Object(old_image).Delete(ctx)
 	if err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
@@ -185,9 +196,13 @@ func UpdateLearning(c *gin.Context) {
 		return
 	}
 	defer file.Close()
+	image_name := handler.Filename
+	//remove space from image name
+	image_name = strings.Replace(image_name, " ", "", -1)
 	//if no error, save image to local disk and save image path to database with random number + image name
-	imagePath := strconv.FormatUint(uint64(rand.Int63()), 10) + handler.Filename
-	ctx := context.Background()
+	imagePath := strconv.FormatUint(uint64(rand.Int63()), 10) + image_name
+	ctx = context.Background()
+	//create file with image path
 	wc := route.storage.Bucket("futurego-29b1b.appspot.com").Object(imagePath).NewWriter(ctx)
 	io.Copy(wc, file)
 	if err != nil {
@@ -195,15 +210,14 @@ func UpdateLearning(c *gin.Context) {
 		return
 	}
 	wc.Close()
-	//create image url
+	//create image url with function CreateImageUrl 
 	err = CreateImageUrl(imagePath, "futurego-29b1b.appspot.com", ctx, route.client)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	//url
-	url := "https://storage.googleapis.com/" + "futurego-29b1b.appspot.com" + "/" + imagePath
-	learning.Image = url
+	learning.Image = imagePath
 	_, err = models.UpdateLearning(uint(id_uint), &learning)
 	if err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
@@ -212,10 +226,23 @@ func UpdateLearning(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "success"})
 }
 func DeleteLearning(c *gin.Context) {
+	var route App
+	route.Init()
 	id := c.Param("id")
 	id_uint, err := strconv.ParseUint(id, 10, 64)
+	//get old learning data from database with id and function GetLearningById from models learning.go
+	learning, err := models.GetLearningById(uint(id_uint))
 	if err != nil {
+		//if error, return with error message
 		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	image := learning.Image
+	//delete image from firebase storage
+	ctx := context.Background()
+	delete := route.storage.Bucket("futurego-29b1b.appspot.com").Object(image).Delete(ctx)
+	if err != nil {
+		c.JSON(400, gin.H{"error": delete.Error()})
 		return
 	}
 	err = models.DeleteLearning(uint(id_uint))

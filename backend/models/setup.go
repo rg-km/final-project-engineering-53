@@ -10,7 +10,8 @@ var DB *sql.DB
 func ConnectDatabase() {
 	var err error
 	// Connect to the database and handle any errors
-	DB, err = sql.Open("sqlite3", ".database.db")
+	//open database from folder database
+	DB, err = sql.Open("sqlite3", "./database/.database.db")
 	if err != nil {
 		panic(err)
 	}
