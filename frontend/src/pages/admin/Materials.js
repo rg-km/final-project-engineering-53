@@ -8,6 +8,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Textarea,
 } from "@chakra-ui/react";
 import BaseLayout from "../../components/layouts/BaseLayout";
 import { AdminCard } from "../../components/cards/AdminCard";
@@ -83,9 +84,8 @@ export default function AdminMaterials() {
             <FormLabel htmlFor="description" mt={6}>
               Description
             </FormLabel>
-            <Input
+            <Textarea
               id="description"
-              type="text"
               onChange={handleDescription}
               value={form.sub_header}
               borderColor="gray.400"
@@ -106,9 +106,8 @@ export default function AdminMaterials() {
             <FormLabel htmlFor="content" mt={6}>
               Content
             </FormLabel>
-            <Input
+            <Textarea
               id="content"
-              type="text"
               onChange={handleContent}
               value={form.content}
               borderColor="gray.400"
