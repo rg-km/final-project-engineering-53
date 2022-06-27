@@ -1,57 +1,56 @@
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {
   Box,
+  Button,
   Container,
   Heading,
   Image,
-  ListItem,
-  OrderedList,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { MdArrowBack } from "react-icons/md";
 import useFetch from "../../hooks/useFetch";
 
 export default function MaterialDetail() {
   const { id } = useParams();
-  const { data: material, loading } = useFetch(
-    "http://localhost:8000/materials/" + id
+  const { data: materials, loading } = useFetch(
+    "http://localhost:8080/materials/" + id
   );
 
-  // console.log(material);
+  const data = materials?.materials;
 
   return (
     <Container maxW="container.xl" minH="90vh">
-      <Stack as="section" direction="column" spacing={16} my={24}>
+      <Stack as="section" direction="column" spacing={16} my={16}>
+        <Box>
+          <Button as={NavLink} to="/materials" leftIcon={<MdArrowBack />}>
+            Back To Materials
+          </Button>
+        </Box>
+
         {loading && <Heading as="h1">Loading...</Heading>}
 
-        {material && (
+        {materials && (
           <>
             <VStack w="full" textAlign="center" spacing={8}>
               <Image
-                src={material.thumbnail}
-                alt={`Image of ${material.title_eng}`}
+                src={`http://localhost:8080/${data.image}`}
+                alt="Cover image"
+                maxW="480px"
                 borderRadius={4}
-                pb={8}
               />
-              <Heading as="h1">
-                {material.title} ({material.title_eng})
-              </Heading>
+              <Heading as="h1">{data.title}</Heading>
               <Text fontSize="xl" lineHeight={1.8}>
-                {material.description}
+                {data.sub_header}
               </Text>
             </VStack>
 
-            <Box>
-              <Heading as="h2" fontSize="2xl" pb={6}>
+            <Box minH="480px">
+              <Heading as="h2" fontSize="2xl" pb={8}>
                 Materi yang Dipelajari
               </Heading>
-
-              <OrderedList fontSize="lg" spacing={2}>
-                {material?.subjects?.map((subject, index) => (
-                  <ListItem key={index}>{subject}</ListItem>
-                ))}
-              </OrderedList>
+              <Text fontSize="lg">{data.content}</Text>
             </Box>
           </>
         )}
