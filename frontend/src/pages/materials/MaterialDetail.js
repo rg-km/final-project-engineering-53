@@ -12,10 +12,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { MdArrowBack } from "react-icons/md";
-import useFetch from "../../hooks/useFetch";
 import { BtnLikes } from "../../components/buttons/BtnLikes";
+import useFetch from "../../hooks/useFetch";
+import useAuth from "../../hooks/useAuth";
 
 export default function MaterialDetail() {
+  const { auth } = useAuth();
+
   const { id } = useParams();
   const { data: materials, loading } = useFetch(
     "http://localhost:8080/materials/" + id
@@ -33,7 +36,7 @@ export default function MaterialDetail() {
 
           <Spacer />
 
-          <BtnLikes />
+          {auth?.username ? <BtnLikes /> : <BtnLikes disabled={true} />}
         </HStack>
 
         {loading && <Heading as="h1">Loading...</Heading>}
