@@ -341,6 +341,7 @@ func GetLearningID(c *gin.Context){
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
+	learning.Image = "https://storage.googleapis.com/futurego-29b1b.appspot.com/" + learning.Image
 	//if no error, return with learning
 	c.JSON(200, gin.H{"materials": learning})
 }
