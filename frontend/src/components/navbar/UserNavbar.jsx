@@ -16,6 +16,7 @@ export default function UserNavbar() {
   const PATHS = [
     { to: "/", label: "Home" },
     { to: "/materials", label: "Materials" },
+    { to: "/about-us", label: "About Us" },
     { to: "/profile", label: "Profile" },
   ];
 
