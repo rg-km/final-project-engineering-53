@@ -100,7 +100,7 @@ export const AddMaterial = () => {
         <ModalContent>
           <ModalHeader>Add New Material</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody pt={6}>
             <form onSubmit={handleSubmitForm}>
               <FormControl isRequired>
                 <FormLabel htmlFor="title">Title</FormLabel>

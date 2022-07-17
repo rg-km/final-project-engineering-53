@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import React, { useState } from "react";
 import axios from "../../api/axiosGO";
 import {
   Modal,
@@ -22,10 +22,12 @@ export const DeleteMaterial = ({ id, title }) => {
   const navigate = useNavigate();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem("token");
 
   const handleDeleteMaterial = async () => {
+    setLoading(true);
     try {
       await axios.delete(API_URL + id, {
         headers: { Authorization: `Bearer ${token}` },
@@ -44,6 +46,7 @@ export const DeleteMaterial = ({ id, title }) => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   return (
@@ -55,22 +58,19 @@ export const DeleteMaterial = ({ id, title }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Confirmation</ModalHeader>
+          <ModalHeader>Delete Material</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody py={6}>
             <Text>
-              Delete <b>{title}</b> from Materials?
+              You are about to delete <b>"{title}"</b> from Materials.
             </Text>
           </ModalBody>
 
           <ModalFooter>
             <Button
               colorScheme="red"
-              mr={3}
-              onClick={() => {
-                handleDeleteMaterial();
-                onClose();
-              }}
+              onClick={handleDeleteMaterial}
+              isLoading={loading ? true : false}
             >
               Delete
             </Button>

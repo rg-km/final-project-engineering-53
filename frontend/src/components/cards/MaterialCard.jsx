@@ -19,13 +19,14 @@ export default function SubjectCard({
       borderRadius={8}
       p={8}
     >
-      <VStack w="full" textAlign="left" spacing={6}>
-        <Image
-          // src={`http://localhost:8080/${thumbnail}`}
-          src={thumbnail}
-          alt="Cover image"
-          borderRadius={4}
-        />
+      <VStack
+        w="full"
+        h="full"
+        textAlign="left"
+        justify="space-between"
+        spacing={4}
+      >
+        <Image src={thumbnail} alt="Cover image" borderRadius={4} />
 
         <Box width="full">
           <Heading as="h5" fontSize="2xl" textTransform="capitalize">
