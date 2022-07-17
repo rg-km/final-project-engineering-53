@@ -19,7 +19,7 @@ import useAuth from "../../hooks/useAuth";
 const SIDEBAR_LINKS = [
   ["Dashboard", FiHome, "/admin/dashboard"],
   ["Materials ", FiBookOpen, "/admin/materials"],
-  ["Users", FiUsers, "#"],
+  ["Profile", FiUsers, "/admin/profile"],
 ];
 
 export default function Sidebar() {

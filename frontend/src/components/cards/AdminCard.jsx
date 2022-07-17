@@ -1,12 +1,12 @@
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 
-export const AdminCard = ({ children, title }) => {
+export const AdminCard = ({ children, title, width }) => {
   return (
     <>
       <Heading mb={6}>{title}</Heading>
       <Box
-        w="840px"
+        w={width ? width : "840px"}
         minH="640px"
         h="fit-content"
         border="1px solid"
