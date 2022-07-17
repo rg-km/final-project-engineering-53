@@ -25,12 +25,13 @@ export const DeleteMaterial = ({ id, title }) => {
 
   const token = localStorage.getItem("token");
 
-  const deletePost = () => {
+  const handleDeleteMaterial = async () => {
     try {
-      axios.delete(API_URL + id, {
+      await axios.delete(API_URL + id, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      navigate("/admin/materials", { replace: true });
+
+      navigate("/admin/dashboard", { replace: true });
       toast({
         title: "Success!",
         description: "Material deleted successfully.",
@@ -39,6 +40,7 @@ export const DeleteMaterial = ({ id, title }) => {
         position: "top",
         isClosable: true,
       });
+      //
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +48,7 @@ export const DeleteMaterial = ({ id, title }) => {
 
   return (
     <>
-      <Button colorScheme="red" onClick={onOpen}>
+      <Button variant="outline" colorScheme="red" onClick={onOpen}>
         Delete
       </Button>
 
@@ -63,17 +65,14 @@ export const DeleteMaterial = ({ id, title }) => {
 
           <ModalFooter>
             <Button
-              colorScheme="blue"
+              colorScheme="red"
               mr={3}
               onClick={() => {
-                deletePost();
+                handleDeleteMaterial();
                 onClose();
               }}
             >
-              Yes
-            </Button>
-            <Button colorScheme="gray" mr={3} onClick={onClose}>
-              Cancel
+              Delete
             </Button>
           </ModalFooter>
         </ModalContent>

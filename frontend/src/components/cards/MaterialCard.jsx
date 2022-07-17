@@ -33,7 +33,7 @@ export default function SubjectCard({
           </Heading>
         </Box>
 
-        <Box height="92px" overflow="hidden">
+        <Box height="92px" w="full" overflow="hidden">
           <Text textOverflow="ellipsis">{description}</Text>
         </Box>
 

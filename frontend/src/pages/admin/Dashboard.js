@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
+  Button,
   Heading,
   Table,
   TableContainer,
@@ -10,10 +11,11 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import BaseLayout from "../../components/layouts/BaseLayout";
 import { AdminCard } from "../../components/cards/AdminCard";
 import useFetch from "../../hooks/useFetch";
-import { DeleteMaterial } from "../../components/modals/DeleteMaterial";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   // GET Materials
@@ -36,7 +38,7 @@ export default function Dashboard() {
             <Thead>
               <Tr>
                 <Th w="80px">No.</Th>
-                <Th>Title</Th>
+                <Th minW="300px">Title</Th>
                 <Th>Action</Th>
               </Tr>
             </Thead>
@@ -47,10 +49,16 @@ export default function Dashboard() {
                     <Td textAlign="center">{index + 1}</Td>
                     <Td textTransform="capitalize">{material.header}</Td>
                     <Td>
-                      <DeleteMaterial
-                        id={material.id}
-                        title={material.header}
-                      />
+                      <Button
+                        as={Link}
+                        colorScheme="blue"
+                        color="blue.600"
+                        variant="link"
+                        to={`/materials/${material.id}`}
+                        target="_blank"
+                      >
+                        Visit Material <ExternalLinkIcon mx={1} mb={1} />
+                      </Button>
                     </Td>
                   </Tr>
                 ))}
