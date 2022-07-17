@@ -23,10 +23,15 @@ export default function AdminMaterials() {
     "http://localhost:8080/materials"
   );
   const getMaterials = materials?.materials; // get response from backend
+  const countId = getMaterials?.length; // count how many fetched items
 
   return (
     <BaseLayout bgColor="gray.300">
-      <AdminCard title="Materials" width="1048px">
+      <AdminCard
+        title="Materials"
+        width="1048px"
+        overflowY={countId < 7 ? "hidden" : "scroll"} // if items over 7 show scroll
+      >
         <AddMaterial />
 
         <Heading as="h3" fontSize="2xl" py={8}>

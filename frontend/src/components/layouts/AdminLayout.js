@@ -12,7 +12,7 @@ export const AdminLayout = () => {
   return (
     <main>
       <ScrollToTop>
-        <HStack w="full">
+        <HStack w="full" h="full" align="start">
           <Sidebar />
           <Outlet />
         </HStack>

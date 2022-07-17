@@ -23,10 +23,15 @@ export default function Dashboard() {
     "http://localhost:8080/materials"
   );
   const getMaterials = materials?.materials; // get response from backend
+  const countId = getMaterials?.length; // count how many fetched items
 
   return (
     <BaseLayout bgColor="gray.300">
-      <AdminCard title="Dashboard" width="1048px">
+      <AdminCard
+        title="Dashboard"
+        width="1048px"
+        overflowY={countId < 10 ? "hidden" : "scroll"} // if items over 10 show scroll
+      >
         <Heading as="h3" fontSize="2xl" pb={5}>
           List of Materials
         </Heading>
