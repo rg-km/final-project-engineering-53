@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
-  Button,
   Heading,
   Table,
   TableContainer,
@@ -16,6 +15,7 @@ import { AdminCard } from "../../components/cards/AdminCard";
 import useFetch from "../../hooks/useFetch";
 import { DeleteMaterial } from "../../components/modals/DeleteMaterial";
 import { AddMaterial } from "../../components/modals/AddMaterial";
+import { EditMaterial } from "../../components/modals/EditMaterial";
 
 export default function AdminMaterials() {
   // GET Materials
@@ -56,9 +56,12 @@ export default function AdminMaterials() {
                     <Td textAlign="center">{index + 1}</Td>
                     <Td textTransform="capitalize">{material.header}</Td>
                     <Td>
-                      <Button colorScheme="blue" mr={2}>
-                        Edit
-                      </Button>
+                      <EditMaterial
+                        id={material.id}
+                        title={material.header}
+                        description={material.sub_header}
+                        content={material.content}
+                      />
                       <DeleteMaterial
                         id={material.id}
                         title={material.header}
