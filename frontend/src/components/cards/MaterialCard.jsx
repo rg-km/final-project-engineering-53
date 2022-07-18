@@ -24,12 +24,17 @@ export default function SubjectCard({
         h="full"
         textAlign="left"
         justify="space-between"
-        spacing={4}
+        spacing={6}
       >
         <Image src={thumbnail} alt="Cover image" borderRadius={4} />
 
         <Box width="full">
-          <Heading as="h5" fontSize="2xl" textTransform="capitalize">
+          <Heading
+            as="h5"
+            fontSize="1.2rem"
+            textTransform="capitalize"
+            lineHeight={1.5}
+          >
             {title}
           </Heading>
         </Box>
