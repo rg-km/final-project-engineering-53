@@ -18,6 +18,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminRegister from "./pages/admin/AdminRegister";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminMaterials from "./pages/admin/Materials";
+import AdminProfile from "./pages/admin/Profile";
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/materials" element={<AdminMaterials />} />
+          <Route path="/admin/profile" element={<AdminProfile />} />
         </Route>
       </Route>
       {/* Admin Layout */}

@@ -19,7 +19,7 @@ import useAuth from "../../hooks/useAuth";
 const SIDEBAR_LINKS = [
   ["Dashboard", FiHome, "/admin/dashboard"],
   ["Materials ", FiBookOpen, "/admin/materials"],
-  ["Users", FiUsers, "#"],
+  ["Profile", FiUsers, "/admin/profile"],
 ];
 
 export default function Sidebar() {
@@ -28,12 +28,12 @@ export default function Sidebar() {
   return (
     <VStack
       as="aside"
-      h="100vh"
+      minH="100vh"
+      h="full"
       w="fit-content"
       minW="220px"
-      border="2px solid"
-      borderColor="gray.200"
-      p={6}
+      px={4}
+      py={16}
     >
       <VStack w="full" spacing={6}>
         <Avatar size="lg" src="jpg">
@@ -54,7 +54,7 @@ export default function Sidebar() {
         divider={<StackDivider borderColor="gray.300" />}
         align="left"
         spacing={6}
-        pt={16}
+        pt={12}
       >
         {SIDEBAR_LINKS.map(([menu, AsIcon, href]) => (
           <NavLink to={href} key={menu}>

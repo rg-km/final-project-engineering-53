@@ -1,61 +1,75 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import axios from "../../api/axiosGO";
-import { Heading, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import BaseLayout from "../../components/layouts/BaseLayout";
 import { AdminCard } from "../../components/cards/AdminCard";
-import useAuth from "../../hooks/useAuth";
-
-const API_URL = "/admin/user";
+import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
-  const { setAuth } = useAuth();
-
-  const [user, setUser] = useState({});
-  const [success, setSuccess] = useState(false);
-
-  const token = localStorage.getItem("token");
-
-  const handleLoggedInUser = async () => {
-    try {
-      const response = await axios.get(API_URL, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setSuccess(true);
-      setUser(response?.data);
-
-      const username = response?.data?.data?.username;
-      const email = response?.data?.data?.email;
-      const role = response?.data?.data?.role;
-
-      setAuth({ username, email, role });
-      //
-    } catch (error) {
-      alert("Unauthorized. Please login as admin!");
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    handleLoggedInUser();
-  }, []);
+  // GET Materials
+  const { data: materials, loading } = useFetch(
+    "http://localhost:8080/materials"
+  );
+  const getMaterials = materials?.materials; // get response from backend
+  const countId = getMaterials?.length; // count how many fetched items
 
   return (
     <BaseLayout bgColor="gray.300">
-      <AdminCard title="Dashboard">
+      <AdminCard
+        title="Dashboard"
+        width="1048px"
+        overflowY={countId < 10 ? "hidden" : "scroll"} // if items over 10 show scroll
+      >
         <Heading as="h3" fontSize="2xl" pb={5}>
-          Check User
+          List of Materials
         </Heading>
 
-        {success ? (
-          <UnorderedList display="table">
-            <ListItem>Username: {user.data.username}</ListItem>
-            <ListItem>Email: {user.data.email}</ListItem>
-            <ListItem>Role: {user.data.role}</ListItem>
-          </UnorderedList>
-        ) : (
-          <Text>No User Found</Text>
-        )}
+        {loading && <Text>Loading...</Text>}
+
+        <TableContainer>
+          <Table variant="striped">
+            <Thead>
+              <Tr>
+                <Th w="80px">No.</Th>
+                <Th minW="300px">Title</Th>
+                <Th>Action</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {getMaterials &&
+                getMaterials?.map((material, index) => (
+                  <Tr key={material.id}>
+                    <Td textAlign="center">{index + 1}</Td>
+                    <Td textTransform="capitalize">{material.header}</Td>
+                    <Td>
+                      <Button
+                        as={Link}
+                        colorScheme="blue"
+                        color="blue.600"
+                        variant="link"
+                        to={`/materials/${material.id}`}
+                        target="_blank"
+                      >
+                        Visit Material <ExternalLinkIcon mx={1} mb={1} />
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
       </AdminCard>
     </BaseLayout>
   );

@@ -19,7 +19,7 @@ const LOGIN_URL = "/login";
 export default function AdminLogin() {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/admin/dashboard"; // redirect admin to dashboard
+  const from = location.state?.from?.pathname || "/admin/profile"; // redirect admin to profile
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

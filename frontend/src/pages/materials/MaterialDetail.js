@@ -60,7 +60,11 @@ export default function MaterialDetail() {
               <Heading as="h2" fontSize="2xl" pb={8}>
                 Materi yang Dipelajari
               </Heading>
-              <Text fontSize="lg">{data.content}</Text>
+
+              <Text
+                fontSize="lg"
+                dangerouslySetInnerHTML={{ __html: data.content }}
+              />
             </Box>
           </>
         )}
