@@ -55,7 +55,9 @@ export default function App() {
       {/* Admin Layout */}
 
       {/* Find The Missing Routes */}
-      <Route path="*" element={<NotFound />} />
+      <Route path="/*" element={<UserLayout />}>
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 }
